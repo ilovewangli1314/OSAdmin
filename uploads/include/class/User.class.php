@@ -233,13 +233,13 @@ class User extends Base{
 		$result = $db->delete ( self::getTableName(), $condition );
 		return $result;
 	}
-	
+
 	public static function count($condition = '') {
 		$db=self::__instance();
 		$num = $db->count ( self::getTableName(), $condition );
 		return $num;
 	}
-	
+
 	public static function countSearch($user_group,$user_name) {
 		$db=self::__instance();
 		$condition = array();

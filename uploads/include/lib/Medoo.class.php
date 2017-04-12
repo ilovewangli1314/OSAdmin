@@ -23,10 +23,9 @@ class Medoo{
             $this->pdo=null;
             $this->pdo = new PDO('mysql:host=' . $this->server . ';port='.$this->port.';dbname=' . $this->database_name, $this->username,$this->password);
 			$this->pdo->exec('SET NAMES \'' . $this->charset . '\'');
-		 
 		}
 		catch (PDOException $e) {
-			echo $e->getMessage();
+//			echo $e->getMessage();
 		}
 	}
 	

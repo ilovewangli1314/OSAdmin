@@ -4,9 +4,10 @@ $user_name = $password = $remember = $verify_code = '';
 extract ( $_POST, EXTR_IF_EXISTS );
 
 if (Common::isPost ()) {
-	if(strtolower($verify_code) != strtolower($_SESSION['osa_verify_code'])){
-		OSAdmin::alert("error",ErrorMessage::VERIFY_CODE_WRONG);
-	}else{
+    // JiangGang 20170323 暂时取消验证码
+//	if(strtolower($verify_code) != strtolower($_SESSION['osa_verify_code'])){
+//		OSAdmin::alert("error",ErrorMessage::VERIFY_CODE_WRONG);
+//	}else{
 		$user_info = User::checkPassword ( $user_name, $password );
 		
 		if ($user_info) {
@@ -28,7 +29,7 @@ if (Common::isPost ()) {
 			OSAdmin::alert("error",ErrorMessage::USER_OR_PWD_WRONG);
 			SysLog::addLog ( $user_name, 'LOGIN','User' ,'' , json_encode(ErrorMessage::USER_OR_PWD_WRONG) );
 		}
-	}
+//	}
 }
 Template::assign ( '_POST',$_POST );
 Template::assign ( 'page_title','登入' );

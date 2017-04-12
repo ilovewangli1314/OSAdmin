@@ -9,7 +9,7 @@ class Common {
 		if($admin_url{strlen($admin_url)-1}=="/"){
 			$admin_url = substr($admin_url,0,strlen($admin_url)-1);
 		}
-	
+
 		$http_pos = strpos($admin_url,'http://');
 		
 		if($http_pos !== false){
@@ -124,11 +124,15 @@ class Common {
 		
 		return (!is_numeric($time)) ? date ( 'Y-m-d H:i:s' ) : date( 'Y-m-d H:i:s', $time);
 	}
-	
+
+    public static function getDateStr($time = null) {
+        return (!is_numeric($time)) ? date ( 'Y-m-d' ) : date( 'Y-m-d', $time);
+    }
+
 	public static function getTime() {
 		return strtotime(date( 'Y-m-d H:i:s' ));
 	}
-	
+
 	public static function getSysInfo() {
 		$sys_info_array = array ();
 		$sys_info_array ['gmt_time'] = gmdate ( "Y年m月d日 H:i:s", time () );
@@ -175,4 +179,30 @@ class Common {
 		}
 		return $text;
 	}
+
+	public static function print_r_n($text)
+    {
+        print_r($text . '</br>');
+    }
+
+    /**
+     * 根据数组中的某个key去重
+     * @param $array
+     * @param $key
+     * @return array
+     */
+    public static function unique_multidim_array($array, $key) {
+        $temp_array = array();
+        $i = 0;
+        $key_array = array();
+
+        foreach($array as $val) {
+            if (!in_array($val[$key], $key_array)) {
+                $key_array[$i] = $val[$key];
+                $temp_array[$i] = $val;
+            }
+            $i++;
+        }
+        return $temp_array;
+    }
 }

@@ -4,7 +4,7 @@ $user_group = $method = $user_name = $user_id = $page_no = $search = '';
 extract ( $_REQUEST, EXTR_IF_EXISTS );
 if ($method == 'pause' && ! empty ( $user_id )) {
 	$user_data=array("status"=>0);
-	
+
 	if($user_id == UserSession::getUserId()){
 		OSAdmin::alert("error",ErrorMessage::CAN_NOT_DO_SELF);
 	}else{
@@ -62,7 +62,6 @@ if($search){
 	$page_no=$page_no>($total_page)?($total_page):$page_no;
 	$start = ($page_no - 1) * $page_size;
 	$user_infos = User::search($user_group,$user_name,$start , $page_size);
-	
 }else{
 	$row_count = User::count ();
 	$total_page=$row_count%$page_size==0?$row_count/$page_size:ceil($row_count/$page_size);

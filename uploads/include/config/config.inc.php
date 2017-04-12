@@ -15,7 +15,8 @@ define('TEMPLATE_CONFIGS', ADMIN_BASE . '/config/');
 define('TEMPLATE_CACHE', ADMIN_BASE . '/cache/');
 
 // OSAdmin 常量
-define('ADMIN_URL' ,'http://demo.osadmin.net/uploads');
+//define('ADMIN_URL' ,'http://demo.osadmin.net/uploads');
+define('ADMIN_URL' ,'http://localhost/OSAdmin/uploads');
 define('ADMIN_TITLE' ,'管理后台');
 define('COMPANY_NAME' ,'OSAdmin.org');
 
@@ -25,7 +26,7 @@ $DATABASE_LIST[OSA_DB_ID] = array (
 	'server' => '127.0.0.1',
 	'port' => '3306',
 	'username' => 'root',
-	'password' => '',
+	'password' => 'ayumiis123',
 	'db_name' => 'osadmin');
 
 // 样例数据库设置
@@ -34,9 +35,17 @@ $DATABASE_LIST[SAMPLE_DB_ID] = array (
 	'server' => '127.0.0.1',
 	'port' => '3306',
 	'username' => 'root',
-	'password' => '',
+	'password' => 'ayumiis123',
 	'db_name' => 'osadmin');
 
+// 游戏数据库设置
+define('GAME_DB_ID' ,'game');
+$DATABASE_LIST[GAME_DB_ID] = array (
+    'server' => '127.0.0.1',
+    'port' => '27017',
+    'username' => 'jianggang',
+    'password' => 'jg!a123.',
+    'db_name' => 'clash_of_gods');
 
 // COOKIE 加密密钥，建议修改
 define('OSA_ENCRYPT_KEY','whatafuckingday!');
@@ -46,7 +55,11 @@ define('OSA_TABLE_PREFIX' ,'osa_');
 
 // 页面设置
 define('DEBUG' ,false);
-define('PAGE_SIZE', 25);
+//define('PAGE_SIZE', 25);
+define('PAGE_SIZE', 10);
+
+// 统计数据的起始时间
+define('STAT_BEGIN_TIME', '2017-03-27 00:00:00');
 
 $OSA_TEMPLATES = array(
 	'default' => '默认模板',
