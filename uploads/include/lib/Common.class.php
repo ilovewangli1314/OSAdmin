@@ -1,5 +1,5 @@
 <?php
-if(!defined('ACCESS')) {exit('Access denied.');}
+//if(!defined('ACCESS')) {exit('Access denied.');}
 class Common {
 
 	//获取OSAdmin的action_url，用于权限验证
