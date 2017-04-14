@@ -9,7 +9,7 @@ class DailyRecord extends Base{
 	// 表名
     private static $table_name = 'dailyrecords';
 	// 查询字段
-	private static $columns = array('id', 'dayTime', 'activeUsers', 'addedUsers', 'payUsers', 'addedPayUsers', 'payAmount');
+	private static $columns = array('id', 'dayTime', 'activeUsers', 'addedUsers', 'payUsers', 'addedPayUsers', 'payAmount', 'addedPayAmount');
 
     public static function __instance($database = OSA_DB_ID)
     {
@@ -35,4 +35,16 @@ class DailyRecord extends Base{
         }
         return array();
 	}
+
+    public static function update($dailyRecord_id, $dailyRecord_data)
+    {
+        if (!$dailyRecord_data || !is_array($dailyRecord_data)) {
+            return false;
+        }
+        $db = self::__instance();
+        $condition = array("id" => (int)$dailyRecord_id);
+
+        $id = $db->update(self::getTableName(), $dailyRecord_data, $condition);
+        return $id;
+    }
 }

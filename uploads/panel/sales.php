@@ -105,9 +105,9 @@ if ($search) {
 //            // 根据玩家的设备ID去重获得付费用户数
 //            $sale_info['pay_users'] = count(Common::unique_multidim_array($pay_records, 'userDeviceID'));
             // 活跃用户数
-            $sale_info['active_users'] = $activeUsers;
+            $daily_record['activeUsers'] = $sale_info['active_users'] = $activeUsers;
             // 新增用户数
-            $sale_info['added_users'] = $addedUsers;
+            $daily_record['addedUsers'] = $sale_info['added_users'] = $addedUsers;
             // 次日留存
             $sale_info['next_day_retained'] = $nextDayRetained;
 //            // 7日留存
@@ -115,11 +115,11 @@ if ($search) {
             // 付费信息的ID
             $sale_info['id'] = $daily_record['id'];
             // 付费累计金额
-            $sale_info['pay_amount'] = $daily_record['payAmount'] . '$';
+            $daily_record['payAmount'] = $sale_info['pay_amount'] = $daily_record['payAmount'] . '$';
             // 付费用户数
-            $sale_info['pay_users'] = $payUsers;
+            $daily_record['payUsers'] = $sale_info['pay_users'] = $payUsers;
             // 新增付费用户数
-            $sale_info['added_pay_users'] = $addedPayUsers;
+            $daily_record['addedPayUsers'] = $sale_info['added_pay_users'] = $addedPayUsers;
             // ARPU
             $sale_info['arpu'] = number_format(Common::safeDivide($daily_record['payAmount'], $activeUsers), 2) . '$';
             // ARPPU
@@ -154,6 +154,7 @@ if ($search) {
             // 新增用户付费率
             $sale_info['added_pay_rate'] = "0%";
         }
+        DailyRecord::update($daily_record['id'], $daily_record);
 
         $end_timestamp = $begin_timestamp;
 
