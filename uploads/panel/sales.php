@@ -132,9 +132,9 @@ if ($search) {
             DailyRecord::update($daily_record['id'], $daily_record);
         } else {
             // 活跃用户数
-            $sale_info['active_users'] = 0;
+            $sale_info['active_users'] = $daily_record['activeUsers'];
             // 新增用户数
-            $sale_info['added_users'] = 0;
+            $sale_info['added_users'] = $daily_record['addedUsers'];
             // 次日留存
             $sale_info['next_day_retained'] = "0%";
 //            // 总留存
