@@ -16,3 +16,5 @@ print_r(444 . '</br>');
 
 Template::assign('menus', $menus);
 Template::display('index.tpl');
+
+?>
