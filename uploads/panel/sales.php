@@ -128,6 +128,8 @@ if ($search) {
             $sale_info['pay_rate'] = number_format(Common::safeDivide($payUsers, $activeUsers), 4) * 100 . "%";
             // 新增用户付费率
             $sale_info['added_pay_rate'] = number_format(Common::safeDivide($addedPayUsers, $addedUsers), 4) * 100 . "%";
+
+            DailyRecord::update($daily_record['id'], $daily_record);
         } else {
             // 活跃用户数
             $sale_info['active_users'] = 0;
@@ -154,7 +156,6 @@ if ($search) {
             // 新增用户付费率
             $sale_info['added_pay_rate'] = "0%";
         }
-        DailyRecord::update($daily_record['id'], $daily_record);
 
         $end_timestamp = $begin_timestamp;
 
