@@ -5,11 +5,11 @@ if(!defined('ACCESS')) {exit('Access denied.');}
  * 游戏内购买记录数据模型类(使用mongodb)
  * Class Player
  */
-class PayRecord extends Base{
+class PurchaseRecord extends Base{
 	// 表名
-    private static $table_name = 'payrecords';
+    private static $table_name = 'purchaserecords';
 	// 查询字段
-	private static $columns = array('userID', 'userDeviceID', 'userData', 'goodsID', 'goodsName', 'goodsPrice', 'payNum', 'payTime', 'payReceipt');
+	private static $columns = array('vender', 'userID', 'userDeviceID', 'userData', 'productID', 'productName', 'productPrice', 'purchaseNum', 'purchaseTime', 'purchaseReceipt');
 
     public static function __instance($database = OSA_DB_ID)
     {
@@ -20,27 +20,27 @@ class PayRecord extends Base{
 		return self::$table_name;
 	}
 
-    public static function getPlayerById($player_id)
-    {
-        if (!$player_id || !is_numeric($player_id)) {
-            return false;
-        }
-        $db = self::__instance();
-        $where = $player_id ? ['id' => (int)$player_id] : [];
-        $list = $db->select(self::getTableName(), self::$columns, $where);
-
-        if (!empty($list)) {
-            foreach ($list as &$item) {
-                // 时间单位需要从微妙转换成秒
-                if ($item->time) {
-                    $item->time = Common::getDateTime($item->time / 1000);
-                }
-            }
-
-            return $list[0];
-        }
-        return null;
-    }
+//    public static function getPlayerById($player_id)
+//    {
+//        if (!$player_id || !is_numeric($player_id)) {
+//            return false;
+//        }
+//        $db = self::__instance();
+//        $where = $player_id ? ['id' => (int)$player_id] : [];
+//        $list = $db->select(self::getTableName(), self::$columns, $where);
+//
+//        if (!empty($list)) {
+//            foreach ($list as &$item) {
+//                // 时间单位需要从微妙转换成秒
+//                if ($item->time) {
+//                    $item->time = Common::getDateTime($item->time / 1000);
+//                }
+//            }
+//
+//            return $list[0];
+//        }
+//        return null;
+//    }
 
 //	public static function getAllUsers( $start ='' ,$page_size='' ) {
 //		$db=self::__instance();

@@ -9,7 +9,7 @@ class Player extends Base{
 	// 表名
     private static $table_name = 'users';
 	// 查询字段
-	private static $columns = array('id', 'time');
+	private static $columns = array('id', 'registTime', 'loginTime');
 	//状态定义
 	const ACTIVE = 1;
 	const DEACTIVE = 0;
@@ -35,8 +35,11 @@ class Player extends Base{
         if (!empty($list)) {
             foreach ($list as &$item) {
                 // 时间单位需要从微妙转换成秒
-                if ($item->time) {
-                    $item->time = Common::getDateTime($item->time / 1000);
+                if ($item['loginTime']) {
+                    $item['loginTime'] = Common::getDateTime($item['loginTime'] / 1000);
+                }
+                if ($item['registTime']) {
+                    $item['registTime'] = Common::getDateTime($item['loginTime'] / 1000);
                 }
             }
 
@@ -45,7 +48,7 @@ class Player extends Base{
         return null;
     }
 
-	public static function getAllUsers( $start ='' ,$page_size='' ) {
+	public static function getAllUsers( $start = null, $page_size = null ) {
 		$db=self::__instance();
 		$limit ="";
 		if($page_size){
@@ -67,16 +70,18 @@ class Player extends Base{
 		return array ();
 	}
 
-    public static function search($player_id = null, $start = null, $page_size = null)
+    public static function search($where = null, $start = null, $page_size = null)
     {
         $db = self::__instance();
-        $where = $player_id ? ['id' => (int)$player_id] : [];
         $list = $db->select(self::getTableName(), self::$columns, $where, $start, $page_size);
         if (!empty($list)) {
             foreach ($list as &$item) {
                 // 时间单位需要从微妙转换成秒
-                if ($item['time']) {
-                    $item['time'] = Common::getDateTime($item['time'] / 1000);
+                if ($item['loginTime']) {
+                    $item['loginTime'] = Common::getDateTime($item['loginTime'] / 1000);
+                }
+                if ($item['registTime']) {
+                    $item['registTime'] = Common::getDateTime($item['loginTime'] / 1000);
                 }
             }
 
@@ -84,6 +89,18 @@ class Player extends Base{
         }
         return array();
 	}
+
+    public static function searchByID($player_id = null, $start = null, $page_size = null)
+    {
+        $where = $player_id ? ['id' => (int)$player_id] : [];
+        Player::search($where, $start, $page_size);
+    }
+
+    public static function searchByDeviceID($device_id = null, $start = null, $page_size = null)
+    {
+        $where = $device_id ? ['deviceID' => $device_id] : [];
+        Player::search($where, $start, $page_size);
+    }
 
     public static function updatePlayer($player_id, $player_data)
     {

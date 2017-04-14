@@ -43,7 +43,10 @@ class MeMongoDB {
 
     public function select($table, $columns, $where = null, $start = null, $page_size = null)
     {
-        $filter = $where;
+        $filter = [];
+        if ($where) {
+            $filter = $where;
+        }
         $options = [
             'projection' => []
         ];

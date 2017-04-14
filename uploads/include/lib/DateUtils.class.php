@@ -72,4 +72,14 @@ class DateUtils
         echo '<br>minTime:<br>' . date("Y-m-d H:i:s", $minTime);
         echo '<br>maxTime:<br>' . date("Y-m-d H:i:s", $maxTime);
     }
+
+    public static function getDayBeginTime($time)
+    {
+        return mktime(0, 0, 0, date("m", $time), date("d", $time), date("Y", $time));
+    }
+
+    public static function checkIsSameDay($time1, $time2)
+    {
+        return (DateUtils::getDayBeginTime($time1) == DateUtils::getDayBeginTime($time2));
+    }
 }

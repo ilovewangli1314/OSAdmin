@@ -205,4 +205,19 @@ class Common {
         }
         return $temp_array;
     }
+
+    /**
+     * 安全除法
+     * @param $srcNum
+     * @param $targetNum
+     * @return float|int
+     */
+    public static function safeDivide($srcNum, $targetNum)
+    {
+        if ($targetNum == 0) {
+            return 0;
+        } else {
+            return $srcNum / $targetNum;
+        }
+    }
 }

@@ -19,12 +19,12 @@ $page_size = PAGE_SIZE;
 $page_no=$page_no<1?1:$page_no;
 
 if ($search) {
-    $row_count = count(Player::search($player_id));
+    $row_count = count(Player::searchByID($player_id));
     $total_page = $row_count % $page_size == 0 ? $row_count / $page_size : ceil($row_count / $page_size);
     $total_page = $total_page < 1 ? 1 : $total_page;
     $page_no = $page_no > ($total_page) ? ($total_page) : $page_no;
     $start = ($page_no - 1) * $page_size;
-    $player_infos = Player::search($player_id, $start, $page_size);
+    $player_infos = Player::searchByID($player_id, $start, $page_size);
 
 //    $user_infos = User::search($user_group,$user_name,$start , $page_size);
 } else {
