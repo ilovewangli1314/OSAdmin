@@ -3,7 +3,7 @@ require ('../include/init.inc.php');
 $method = $sale_id = $page_no = $search = '';
 extract ( $_REQUEST, EXTR_IF_EXISTS );
 
-DateUtils::getTimeRange(DATE_UNIT_MONTH, 0);
+//DateUtils::getTimeRange(DATE_UNIT_MONTH, 0);
 
 //START 数据库查询及分页数据
 $page_size = PAGE_SIZE;
@@ -33,6 +33,8 @@ if ($search) {
     $addedUsers = 0;
     $payUsers = 0;
     $addedPayUsers = 0;
+    $nextDayRetained = 0; // 次日留存
+//    $day7Retained = 0; // 7日留存
     for ($i = 0; $i < $days; $i++) {
         $sale_info = [];
 
@@ -71,11 +73,30 @@ if ($search) {
                     $addedPayUsers++;
                 }
             }
+
+            // 实时计算次日留存
+            $timeRange = DateUtils::getTimeRange(DATE_UNIT_DAY, -1);
+//            echo '<br>minTime:<br>' . date("Y-m-d H:i:s", $timeRange['minTime']);
+//            echo '<br>maxTime:<br>' . date("Y-m-d H:i:s", $timeRange['maxTime']);
+            $conditions = ['registTime' => ['$gte' => $timeRange['minTime'] * 1000, '$lt' => $timeRange['maxTime'] * 1000]];
+            $lastPlayers = Player::search($conditions);
+            $retainedPlayer = 0;
+            foreach ($lastPlayers as $value) {
+                if (DateUtils::checkIsSameDay($value['loginTime'], $timeRange['maxTime'])) {
+                    $retainedPlayer++;
+                }
+            }
+            $nextDayRetained = number_format(Common::safeDivide($retainedPlayer, count($lastPlayers)), 4) * 100 . "%";
+//            // 实时计算总留存
+//            $conditions = ['registTime' => ['$lt' => $timeRange['maxTime'] * 1000]];
+//            $day7Retained = number_format(Common::safeDivide($activeUsers - $addedUsers, count(Player::search($conditions))), 4) * 100 . "%";
         } else {
             $activeUsers = 0;
             $addedUsers = 0;
             $payUsers = 0;
             $addedPayUsers = 0;
+            $nextDayRetained = 0;
+            $day7Retained = 0;
         }
 
         $conditions = ['dayTime' => ['$gte' => $begin_timestamp * 1000, '$lt' => $end_timestamp * 1000]];
@@ -87,6 +108,10 @@ if ($search) {
             $sale_info['active_users'] = $activeUsers;
             // 新增用户数
             $sale_info['added_users'] = $addedUsers;
+            // 次日留存
+            $sale_info['next_day_retained'] = $nextDayRetained;
+//            // 7日留存
+//            $sale_info['day7_retained'] = $day7Retained;
             // 付费信息的ID
             $sale_info['id'] = $daily_record['id'];
             // 付费累计金额
@@ -100,14 +125,18 @@ if ($search) {
             // ARPPU
             $sale_info['arppu'] = Common::safeDivide($daily_record['payAmount'], $payUsers) . '$';
             // 付费率
-            $sale_info['pay_rate'] = Common::safeDivide($payUsers, $activeUsers) * 100 . "%";
+            $sale_info['pay_rate'] = number_format(Common::safeDivide($payUsers, $activeUsers), 4) * 100 . "%";
             // 新增用户付费率
-            $sale_info['added_pay_rate'] = Common::safeDivide($addedPayUsers, $addedUsers) * 100 . "%";
+            $sale_info['added_pay_rate'] = number_format(Common::safeDivide($addedPayUsers, $addedUsers), 4) * 100 . "%";
         } else {
             // 活跃用户数
             $sale_info['active_users'] = 0;
             // 新增用户数
             $sale_info['added_users'] = 0;
+            // 次日留存
+            $sale_info['next_day_retained'] = "0%";
+//            // 总留存
+//            $sale_info['total_retained'] = "0%";
             // 付费信息的ID
             $sale_info['id'] = -1;
             // 付费累计金额

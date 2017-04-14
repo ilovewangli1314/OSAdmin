@@ -69,13 +69,17 @@ class DateUtils
             $maxTime = mktime(0, 0, 0, date("m") + 1 + $offset, 1, date("Y"));
         }
 
-        echo '<br>minTime:<br>' . date("Y-m-d H:i:s", $minTime);
-        echo '<br>maxTime:<br>' . date("Y-m-d H:i:s", $maxTime);
+//        echo '<br>minTime:<br>' . date("Y-m-d H:i:s", $minTime);
+//        echo '<br>maxTime:<br>' . date("Y-m-d H:i:s", $maxTime);
+
+        return ['minTime' => $minTime, 'maxTime' => $maxTime];
     }
 
     public static function getDayBeginTime($time)
     {
-        return mktime(0, 0, 0, date("m", $time), date("d", $time), date("Y", $time));
+        $resultTime = mktime(0, 0, 0, date("m", $time), date("d", $time), date("Y", $time));
+//        echo '<br>$resultTime:<br>' . date("Y-m-d H:i:s", $resultTime);
+        return $resultTime;
     }
 
     public static function checkIsSameDay($time1, $time2)

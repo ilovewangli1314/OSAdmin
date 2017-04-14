@@ -36,10 +36,10 @@ class Player extends Base{
             foreach ($list as &$item) {
                 // 时间单位需要从微妙转换成秒
                 if ($item['loginTime']) {
-                    $item['loginTime'] = Common::getDateTime($item['loginTime'] / 1000);
+                    $item['loginTime'] = $item['loginTime'] / 1000;
                 }
                 if ($item['registTime']) {
-                    $item['registTime'] = Common::getDateTime($item['loginTime'] / 1000);
+                    $item['registTime'] = $item['registTime'] / 1000;
                 }
             }
 
@@ -78,10 +78,10 @@ class Player extends Base{
             foreach ($list as &$item) {
                 // 时间单位需要从微妙转换成秒
                 if ($item['loginTime']) {
-                    $item['loginTime'] = Common::getDateTime($item['loginTime'] / 1000);
+                    $item['loginTime'] = $item['loginTime'] / 1000;
                 }
                 if ($item['registTime']) {
-                    $item['registTime'] = Common::getDateTime($item['loginTime'] / 1000);
+                    $item['registTime'] = $item['registTime'] / 1000;
                 }
             }
 

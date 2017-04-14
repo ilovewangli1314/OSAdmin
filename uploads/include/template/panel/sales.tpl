@@ -29,34 +29,39 @@
 </div>
 
 	<div class="block">
-		<a href="#page-stats" class="block-heading" data-toggle="collapse">玩家列表</a>
+		<a href="#page-stats" class="block-heading" data-toggle="collapse">销售列表</a>
 		<div id="page-stats" class="block-body collapse in">
 			<table class="table table-striped">
 				<thead>
 				<tr>
-					<th style="width:80px">日期</th>
-					<th style="width:150px">付费用户数</th>
-					<th style="width:150px">付费累计金额</th>
-					<th style="width:150px">新增付费用户数</th>
-					<th style="width:150px">ARPU</th>
-					<th style="width:150px">ARPPU</th>
-					<th style="width:150px">付费率</th>
-					<th style="width:150px">新增用户付费率</th>
-					<th style="width:80px">操作</th>
+					<th style="width:120px">日期</th>
+					<th style="width:120px">活跃用户数</th>
+					<th style="width:120px">新增用户数</th>
+					<th style="width:120px">次日留存</th>
+					<th style="width:120px">付费用户数</th>
+					<th style="width:120px">付费率</th>
+					<th style="width:120px">新增付费用户数</th>
+					<th style="width:120px">新增用户付费率</th>
+					<th style="width:120px">付费累计金额</th>
+					<th style="width:120px">ARPU</th>
+					<th style="width:120px">ARPPU</th>
+					<th style="width:120px">操作</th>
 				</tr>
 				</thead>
 				<tbody>
 				<{foreach name=sale_info from=$sale_infos item=sale_info}>
 					<tr>
 						<td><{$sale_info.date}></td>
+						<td><{$sale_info.active_users}></td>
+						<td><{$sale_info.added_users}></td>
+						<td><{$sale_info.next_day_retained}></td>
 						<td><{$sale_info.pay_users}></td>
-
-						<td><{$sale_info.pay_amount}></td>
+						<td><{$sale_info.pay_rate}></td>
 						<td><{$sale_info.added_pay_users}></td>
+						<td><{$sale_info.added_pay_rate}></td>
+						<td><{$sale_info.pay_amount}></td>
 						<td><{$sale_info.arpu}></td>
 						<td><{$sale_info.arppu}></td>
-						<td><{$sale_info.pay_rate}></td>
-						<td><{$sale_info.added_pay_rate}></td>
 
 						<td>
 							<a data-toggle="modal" href="sale_detail.php?sale_id=<{$sale_info.id}>" title= "查看" ><i class="icon-pencil" href="sale_detail.php?sale_id=<{$sale_info.id}>" ></i></a>
