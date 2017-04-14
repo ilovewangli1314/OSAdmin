@@ -8,6 +8,9 @@ if (Common::isPost ()) {
 //	if(strtolower($verify_code) != strtolower($_SESSION['osa_verify_code'])){
 //		OSAdmin::alert("error",ErrorMessage::VERIFY_CODE_WRONG);
 //	}else{
+    Common::print_r_n($user_name);
+    Common::print_r_n($password);
+
 		$user_info = User::checkPassword ( $user_name, $password );
 		
 		if ($user_info) {
