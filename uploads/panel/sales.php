@@ -115,7 +115,7 @@ if ($search) {
             // 付费信息的ID
             $sale_info['id'] = $daily_record['id'];
             // 付费累计金额
-            $daily_record['payAmount'] = $sale_info['pay_amount'] = $daily_record['payAmount'] . '$';
+            $sale_info['pay_amount'] = $daily_record['payAmount'] . '$';
             // 付费用户数
             $daily_record['payUsers'] = $sale_info['pay_users'] = $payUsers;
             // 新增付费用户数
