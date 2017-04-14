@@ -1,9 +1,4 @@
-
-
 <?php
-
-print_r(111 . '</br>');
-
 require('../include/init.inc.php');
 
 print_r(222 . '</br>');
@@ -18,5 +13,3 @@ print_r(444 . '</br>');
 
 Template::assign('menus', $menus);
 Template::display('index.tpl');
-
-?>
