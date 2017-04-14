@@ -121,9 +121,9 @@ if ($search) {
             // 新增付费用户数
             $sale_info['added_pay_users'] = $addedPayUsers;
             // ARPU
-            $sale_info['arpu'] = Common::safeDivide($daily_record['payAmount'], $activeUsers) . '$';
+            $sale_info['arpu'] = number_format(Common::safeDivide($daily_record['payAmount'], $activeUsers), 2) . '$';
             // ARPPU
-            $sale_info['arppu'] = Common::safeDivide($daily_record['payAmount'], $payUsers) . '$';
+            $sale_info['arppu'] = number_format(Common::safeDivide($daily_record['payAmount'], $payUsers), 2) . '$';
             // 付费率
             $sale_info['pay_rate'] = number_format(Common::safeDivide($payUsers, $activeUsers), 4) * 100 . "%";
             // 新增用户付费率
