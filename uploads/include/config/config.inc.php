@@ -26,7 +26,8 @@ $DATABASE_LIST[OSA_DB_ID] = array (
 	'server' => '127.0.0.1',
 	'port' => '3306',
 	'username' => 'root',
-	'password' => 'ayumiis123',
+//	'password' => 'ayumiis123',
+    'password' => 'Ayumiis123!',
 	'db_name' => 'osadmin');
 
 // 样例数据库设置
