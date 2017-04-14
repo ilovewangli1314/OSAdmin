@@ -34,18 +34,18 @@
 			<table class="table table-striped">
 				<thead>
 				<tr>
-					<th style="width:120px">日期</th>
-					<th style="width:120px">活跃用户数</th>
-					<th style="width:120px">新增用户数</th>
+					<th style="width:140px">日期</th>
+					<th style="width:100px">活跃用户数</th>
+					<th style="width:100px">新增用户数</th>
 					<th style="width:120px">次日留存</th>
-					<th style="width:120px">付费用户数</th>
-					<th style="width:120px">付费率</th>
-					<th style="width:120px">新增付费用户数</th>
-					<th style="width:120px">新增用户付费率</th>
-					<th style="width:120px">付费累计金额</th>
-					<th style="width:120px">ARPU</th>
-					<th style="width:120px">ARPPU</th>
-					<th style="width:120px">操作</th>
+					<th style="width:100px">付费用户数</th>
+					<th style="width:100px">付费率</th>
+					<th style="width:140px">新增付费用户数</th>
+					<th style="width:140px">新增用户付费率</th>
+					<th style="width:140px">付费累计金额</th>
+					<th style="width:100px">ARPU</th>
+					<th style="width:100px">ARPPU</th>
+					<th style="width:100px">操作</th>
 				</tr>
 				</thead>
 				<tbody>
