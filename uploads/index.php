@@ -7,3 +7,5 @@ error_reporting (E_ALL & ~E_NOTICE);
 Common::print_r_n('222');
 
 //header("Location:panel/index.php");
+
+?>
