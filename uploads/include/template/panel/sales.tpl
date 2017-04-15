@@ -42,11 +42,11 @@
 					<th style="width:100px">付费率</th>
 					<th style="width:140px">新增付费用户数</th>
 					<th style="width:140px">新增用户付费率</th>
-					<th style="width:100px">付费次数</th>
+					<th style="width:80px">付费次数</th>
 					<th style="width:140px">付费累计金额</th>
 					<th style="width:100px">ARPU</th>
 					<th style="width:100px">ARPPU</th>
-					<th style="width:100px">操作</th>
+					<th style="width:50px">操作</th>
 				</tr>
 				</thead>
 				<tbody>
