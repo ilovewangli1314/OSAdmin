@@ -140,11 +140,11 @@ if ($search) {
             // 新增用户付费率
             $daily_record['addedPayRate'] = $sale_info['added_pay_rate'] = number_format(Common::safeDivide($addedPayUsers, $addedUsers), 4) * 100 . "%";
 
-//            if (count(DailyRecord::search(['dayTime' => $daily_record['dayTime']])) > 0) {
-//                DailyRecord::update($daily_record['dayTime'], $daily_record);
-//            } else {
-//                DailyRecord::insert($daily_record);
-//            }
+            if (count(DailyRecord::search(['dayTime' => $daily_record['dayTime']])) > 0) {
+                DailyRecord::update($daily_record['dayTime'], $daily_record);
+            } else {
+                DailyRecord::insert($daily_record);
+            }
         } else {
             $conditions = ['dayTime' => $begin_timestamp];
             if (count(DailyRecord::search($conditions)) > 0) {
