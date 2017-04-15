@@ -125,7 +125,7 @@ if ($search) {
             // 付费次数
             $daily_record['payNum'] = $sale_info['pay_num'] = $payNum;
             // 付费累计金额
-            $daily_record['payAmount'] = $payAmount;
+            $daily_record['payAmount'] = number_format($payAmount, 2);
             $sale_info['pay_amount'] = $payAmount . '$';
             // 付费用户数
             $daily_record['payUsers'] = $sale_info['pay_users'] = $payUsers;
