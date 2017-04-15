@@ -35,8 +35,9 @@ if ($search) {
     $addedPayUsers = 0;
     $nextDayRetained = 0; // 次日留存
 //    $day7Retained = 0; // 7日留存
-    $payAmount = 0;
     for ($i = 0; $i < $days; $i++) {
+        $payAmount = 0;
+
         $sale_info = [];
 
         $begin_timestamp = $end_timestamp - 24 * 60 * 60;
@@ -62,6 +63,7 @@ if ($search) {
                 }
             }
 
+            Common::print_r_n('$begin_timestamp:' + $begin_timestamp + " $end_timestamp:" + $end_timestamp);
             $conditions = ['purchaseTime' => ['$gte' => $begin_timestamp * 1000, '$lt' => $end_timestamp * 1000]];
             $purchase_records = PurchaseRecord::search($conditions, null, null);
             $purchase_records = Common::unique_multidim_array($purchase_records, 'userDeviceID');
