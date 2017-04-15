@@ -63,9 +63,6 @@ if ($search) {
                 }
             }
 
-            Common::print_r_n('log!!!');
-            Common::print_r_n($begin_timestamp);
-            Common::print_r_n($end_timestamp);
             $conditions = ['purchaseTime' => ['$gte' => $begin_timestamp * 1000, '$lt' => $end_timestamp * 1000]];
             $purchase_records = PurchaseRecord::search($conditions, null, null);
             foreach ($purchase_records as $value) {
