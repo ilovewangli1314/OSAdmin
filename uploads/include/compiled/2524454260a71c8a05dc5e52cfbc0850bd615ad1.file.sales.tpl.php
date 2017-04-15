@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.15, created on 2017-04-14 14:37:26
+<?php /* Smarty version Smarty-3.1.15, created on 2017-04-15 21:25:07
          compiled from "/Library/WebServer/Documents/OSAdmin/uploads/include/template/panel/sales.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:128125893558da27c7263d27-99341063%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '2524454260a71c8a05dc5e52cfbc0850bd615ad1' => 
     array (
       0 => '/Library/WebServer/Documents/OSAdmin/uploads/include/template/panel/sales.tpl',
-      1 => 1492151668,
+      1 => 1492258226,
       2 => 'file',
     ),
   ),
@@ -71,18 +71,19 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 			<table class="table table-striped">
 				<thead>
 				<tr>
-					<th style="width:120px">日期</th>
-					<th style="width:120px">活跃用户数</th>
-					<th style="width:120px">新增用户数</th>
+					<th style="width:140px">日期</th>
+					<th style="width:100px">活跃用户数</th>
+					<th style="width:100px">新增用户数</th>
 					<th style="width:120px">次日留存</th>
-					<th style="width:120px">付费用户数</th>
-					<th style="width:120px">付费率</th>
-					<th style="width:120px">新增付费用户数</th>
-					<th style="width:120px">新增用户付费率</th>
-					<th style="width:120px">付费累计金额</th>
-					<th style="width:120px">ARPU</th>
-					<th style="width:120px">ARPPU</th>
-					<th style="width:120px">操作</th>
+					<th style="width:100px">付费用户数</th>
+					<th style="width:100px">付费率</th>
+					<th style="width:140px">新增付费用户数</th>
+					<th style="width:140px">新增用户付费率</th>
+					<th style="width:80px">付费次数</th>
+					<th style="width:140px">付费累计金额</th>
+					<th style="width:100px">ARPU</th>
+					<th style="width:100px">ARPPU</th>
+					<th style="width:50px">操作</th>
 				</tr>
 				</thead>
 				<tbody>
@@ -108,6 +109,8 @@ $_smarty_tpl->tpl_vars['sale_info']->_loop = true;
 </td>
 						<td><?php echo $_smarty_tpl->tpl_vars['sale_info']->value['added_pay_rate'];?>
 </td>
+						<td><?php echo $_smarty_tpl->tpl_vars['sale_info']->value['pay_num'];?>
+</td>
 						<td><?php echo $_smarty_tpl->tpl_vars['sale_info']->value['pay_amount'];?>
 </td>
 						<td><?php echo $_smarty_tpl->tpl_vars['sale_info']->value['arpu'];?>
@@ -116,8 +119,8 @@ $_smarty_tpl->tpl_vars['sale_info']->_loop = true;
 </td>
 
 						<td>
-							<a data-toggle="modal" href="sale_detail.php?sale_id=<?php echo $_smarty_tpl->tpl_vars['sale_info']->value['id'];?>
-" title= "查看" ><i class="icon-pencil" href="sale_detail.php?sale_id=<?php echo $_smarty_tpl->tpl_vars['sale_info']->value['id'];?>
+							<a data-toggle="modal" href="sale_detail.php?sale_id=<?php echo $_smarty_tpl->tpl_vars['sale_info']->value['day_time'];?>
+" title= "查看" ><i class="icon-pencil" href="sale_detail.php?sale_id=<?php echo $_smarty_tpl->tpl_vars['sale_info']->value['day_time'];?>
 " ></i></a>
 						</td>
 					</tr>
