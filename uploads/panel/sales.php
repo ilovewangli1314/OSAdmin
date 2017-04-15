@@ -110,6 +110,8 @@ if ($search) {
 //        $daily_record = DailyRecord::search($conditions)[0];
         $daily_record = [];
         if ($i == 0) {
+            // 付费信息的时间
+            $daily_record['dayTime'] = $sale_info['day_time'] = $begin_timestamp * 1000;
 //            // 根据玩家的设备ID去重获得付费用户数
 //            $sale_info['pay_users'] = count(Common::unique_multidim_array($pay_records, 'userDeviceID'));
             // 活跃用户数
@@ -117,56 +119,63 @@ if ($search) {
             // 新增用户数
             $daily_record['addedUsers'] = $sale_info['added_users'] = $addedUsers;
             // 次日留存
-            $sale_info['next_day_retained'] = $nextDayRetained;
+            $daily_record['nextDayRetained'] = $sale_info['next_day_retained'] = $nextDayRetained;
 //            // 7日留存
 //            $sale_info['day7_retained'] = $day7Retained;
-            // 付费信息的ID
-            $sale_info['id'] = $daily_record['id'];
             // 付费次数
-            $sale_info['pay_num'] = $payNum;
+            $daily_record['payNum'] = $sale_info['pay_num'] = $payNum;
             // 付费累计金额
-            $sale_info['pay_amount'] = $payAmount . '$';
+            $daily_record['payAmount'] = $sale_info['pay_amount'] = $payAmount . '$';
             // 付费用户数
             $daily_record['payUsers'] = $sale_info['pay_users'] = $payUsers;
             // 新增付费用户数
             $daily_record['addedPayUsers'] = $sale_info['added_pay_users'] = $addedPayUsers;
             // ARPU
-            $sale_info['arpu'] = number_format(Common::safeDivide($payAmount, $activeUsers), 2) . '$';
+            $daily_record['arpu'] = $sale_info['arpu'] = number_format(Common::safeDivide($payAmount, $activeUsers), 2) . '$';
             // ARPPU
-            $sale_info['arppu'] = number_format(Common::safeDivide($payAmount, $payUsers), 2) . '$';
+            $daily_record['arppu'] = $sale_info['arppu'] = number_format(Common::safeDivide($payAmount, $payUsers), 2) . '$';
             // 付费率
-            $sale_info['pay_rate'] = number_format(Common::safeDivide($payUsers, $activeUsers), 4) * 100 . "%";
+            $daily_record['payRate'] = $sale_info['pay_rate'] = number_format(Common::safeDivide($payUsers, $activeUsers), 4) * 100 . "%";
             // 新增用户付费率
-            $sale_info['added_pay_rate'] = number_format(Common::safeDivide($addedPayUsers, $addedUsers), 4) * 100 . "%";
+            $daily_record['addedPayRate'] = $sale_info['added_pay_rate'] = number_format(Common::safeDivide($addedPayUsers, $addedUsers), 4) * 100 . "%";
 
-//            DailyRecord::update($daily_record['id'], $daily_record);
+            if (count(DailyRecord::search($daily_record['dayTime'])) > 0) {
+                DailyRecord::update($daily_record['dayTime'], $daily_record);
+            } else {
+                DailyRecord::insert($daily_record);
+            }
         } else {
+            $conditions = ['dayTime' => $begin_timestamp * 1000];
+            if (count(DailyRecord::search($conditions)) > 0) {
+                $daily_record = DailyRecord::search($conditions)[0];
+            }
+
             // 活跃用户数
-            $sale_info['active_users'] = $daily_record['activeUsers'];
+            $sale_info['active_users'] = $daily_record['activeUsers'] || 0;
             // 新增用户数
-            $sale_info['added_users'] = $daily_record['addedUsers'];
+            $sale_info['added_users'] = $daily_record['addedUsers'] || 0;
             // 次日留存
-            $sale_info['next_day_retained'] = "0%";
+            $sale_info['next_day_retained'] = ($daily_record['nextDayRetained'] || 0) . "%";
 //            // 总留存
 //            $sale_info['total_retained'] = "0%";
-            // 付费信息的ID
-            $sale_info['id'] = -1;
+            // 付费信息的时间
+            $sale_info['day_time'] = $daily_record['dayTime'] || 0;
             // 付费次数
-            $sale_info['pay_num'] = 0;
+            $sale_info['pay_num'] = $daily_record['payNum'] || 0;
             // 付费累计金额
-            $sale_info['pay_amount'] = '0$';
+            $sale_info['pay_amount'] = ($daily_record['payAmount'] || 0) . "$";
             // 付费用户数
-            $sale_info['pay_users'] = 0;
+            $sale_info['pay_users'] = $daily_record['payUsers'] || 0;
             // 新增付费用户数
-            $sale_info['added_pay_users'] = 0;
+            $sale_info['added_pay_users'] = $daily_record['addedPayUsers'] || 0;
             // ARPU
-            $sale_info['arpu'] = '0$';
+            $sale_info['arpu'] = ($daily_record['arpu'] || 0) . "$";
             // ARPPU
-            $sale_info['arppu'] = '0$';
+            $sale_info['arppu'] = ($daily_record['arppu'] || 0) . "$";
             // 付费率
-            $sale_info['pay_rate'] = "0%";
+            $sale_info['pay_rate'] = ($daily_record['payRate'] || 0) . "%";
             // 新增用户付费率
-            $sale_info['added_pay_rate'] = "0%";
+            $sale_info['added_pay_rate'] = ($daily_record['addedPayRate'] || 0) . "%";
         }
 
         $end_timestamp = $begin_timestamp;

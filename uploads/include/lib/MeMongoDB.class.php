@@ -75,7 +75,6 @@ class MeMongoDB {
             ['$set' => $data]
         );
 
-        $manager = new MongoDB\Driver\Manager('mongodb://localhost:27017');
         $writeConcern = new MongoDB\Driver\WriteConcern(MongoDB\Driver\WriteConcern::MAJORITY, 1000);
         $result = $this->client->executeBulkWrite($this->database_name . '.' . $table, $bulk, $writeConcern);
 
@@ -92,6 +91,17 @@ class MeMongoDB {
         $result = $this->client->executeBulkWrite($this->database_name . '.' . $table, $bulk, $writeConcern);
 
         return $result->getDeletedCount();
+    }
+
+    public function insert($table, $data)
+    {
+        $bulk = new MongoDB\Driver\BulkWrite;
+        $bulk->insert($data);
+
+        $writeConcern = new MongoDB\Driver\WriteConcern(MongoDB\Driver\WriteConcern::MAJORITY, 1000);
+        $result = $this->client->executeBulkWrite($this->database_name . '.' . $table, $bulk, $writeConcern);
+
+        return $result->getUpsertedIds();
     }
 
 //    function command(array $param) {

@@ -66,7 +66,7 @@
 						<td><{$sale_info.arppu}></td>
 
 						<td>
-							<a data-toggle="modal" href="sale_detail.php?sale_id=<{$sale_info.id}>" title= "查看" ><i class="icon-pencil" href="sale_detail.php?sale_id=<{$sale_info.id}>" ></i></a>
+							<a data-toggle="modal" href="sale_detail.php?sale_id=<{$sale_info.day_time}>" title= "查看" ><i class="icon-pencil" href="sale_detail.php?sale_id=<{$sale_info.day_time}>" ></i></a>
 						</td>
 					</tr>
 					<{/foreach}>
