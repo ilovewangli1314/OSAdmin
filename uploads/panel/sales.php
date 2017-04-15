@@ -111,7 +111,7 @@ if ($search) {
         $daily_record = [];
         if ($i == 0) {
             // 付费信息的时间
-            $daily_record['dayTime'] = $sale_info['day_time'] = $begin_timestamp * 1000;
+            $daily_record['dayTime'] = $sale_info['day_time'] = $begin_timestamp;
 //            // 根据玩家的设备ID去重获得付费用户数
 //            $sale_info['pay_users'] = count(Common::unique_multidim_array($pay_records, 'userDeviceID'));
             // 活跃用户数
@@ -125,7 +125,8 @@ if ($search) {
             // 付费次数
             $daily_record['payNum'] = $sale_info['pay_num'] = $payNum;
             // 付费累计金额
-            $daily_record['payAmount'] = $sale_info['pay_amount'] = $payAmount . '$';
+            $daily_record['payAmount'] = $payAmount;
+            $sale_info['pay_amount'] = $payAmount . '$';
             // 付费用户数
             $daily_record['payUsers'] = $sale_info['pay_users'] = $payUsers;
             // 新增付费用户数
@@ -139,16 +140,16 @@ if ($search) {
             // 新增用户付费率
             $daily_record['addedPayRate'] = $sale_info['added_pay_rate'] = number_format(Common::safeDivide($addedPayUsers, $addedUsers), 4) * 100 . "%";
 
-//            if (count(DailyRecord::search($daily_record['dayTime'])) > 0) {
-//                DailyRecord::update($daily_record['dayTime'], $daily_record);
-//            } else {
-//                DailyRecord::insert($daily_record);
-//            }
+            if (count(DailyRecord::search(['dayTime' => $daily_record['dayTime']])) > 0) {
+                DailyRecord::update($daily_record['dayTime'], $daily_record);
+            } else {
+                DailyRecord::insert($daily_record);
+            }
         } else {
-//            $conditions = ['dayTime' => $begin_timestamp * 1000];
-//            if (count(DailyRecord::search($conditions)) > 0) {
-//                $daily_record = DailyRecord::search($conditions)[0];
-//            }
+            $conditions = ['dayTime' => $begin_timestamp];
+            if (count(DailyRecord::search($conditions)) > 0) {
+                $daily_record = DailyRecord::search($conditions)[0];
+            }
 
             // 活跃用户数
             $sale_info['active_users'] = $daily_record['activeUsers'] || 0;
