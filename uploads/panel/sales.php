@@ -68,6 +68,9 @@ if ($search) {
             Common::print_r_n($end_timestamp);
             $conditions = ['purchaseTime' => ['$gte' => $begin_timestamp * 1000, '$lt' => $end_timestamp * 1000]];
             $purchase_records = PurchaseRecord::search($conditions, null, null);
+            foreach ($purchase_records as $value) {
+                $payAmount += (explode("$", $value['productPrice'])[1] * $value['purchaseNum']);
+            }
             $purchase_records = Common::unique_multidim_array($purchase_records, 'userDeviceID');
             foreach ($purchase_records as $value) {
                 $payUsers++;
@@ -77,8 +80,6 @@ if ($search) {
                 if (DateUtils::checkIsSameDay($user['loginTime'], $user['registTime'])) {
                     $addedPayUsers++;
                 }
-
-                $payAmount += (explode("$", $value['productPrice'])[1] * $value['purchaseNum']);
             }
 
             // 实时计算次日留存
