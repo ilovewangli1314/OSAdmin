@@ -35,6 +35,7 @@ if ($search) {
     $addedPayUsers = 0;
     $nextDayRetained = 0; // 次日留存
 //    $day7Retained = 0; // 7日留存
+    $payAmount = 0;
     for ($i = 0; $i < $days; $i++) {
         $sale_info = [];
 
@@ -72,6 +73,8 @@ if ($search) {
                 if (DateUtils::checkIsSameDay($user['loginTime'], $user['registTime'])) {
                     $addedPayUsers++;
                 }
+
+                $payAmount += (explode("$", $value['productPrice'])[1] * $value['purchaseNum']);
             }
 
             // 实时计算次日留存
@@ -99,9 +102,10 @@ if ($search) {
             $day7Retained = 0;
         }
 
-        $conditions = ['dayTime' => ['$gte' => $begin_timestamp * 1000, '$lt' => $end_timestamp * 1000]];
-        $daily_record = DailyRecord::search($conditions)[0];
-        if ($daily_record) {
+//        $conditions = ['dayTime' => ['$gte' => $begin_timestamp * 1000, '$lt' => $end_timestamp * 1000]];
+//        $daily_record = DailyRecord::search($conditions)[0];
+        $daily_record = [];
+        if ($i == 0) {
 //            // 根据玩家的设备ID去重获得付费用户数
 //            $sale_info['pay_users'] = count(Common::unique_multidim_array($pay_records, 'userDeviceID'));
             // 活跃用户数
@@ -115,21 +119,21 @@ if ($search) {
             // 付费信息的ID
             $sale_info['id'] = $daily_record['id'];
             // 付费累计金额
-            $sale_info['pay_amount'] = $daily_record['payAmount'] . '$';
+            $sale_info['pay_amount'] = $payAmount . '$';
             // 付费用户数
             $daily_record['payUsers'] = $sale_info['pay_users'] = $payUsers;
             // 新增付费用户数
             $daily_record['addedPayUsers'] = $sale_info['added_pay_users'] = $addedPayUsers;
             // ARPU
-            $sale_info['arpu'] = number_format(Common::safeDivide($daily_record['payAmount'], $activeUsers), 2) . '$';
+            $sale_info['arpu'] = number_format(Common::safeDivide($payAmount, $activeUsers), 2) . '$';
             // ARPPU
-            $sale_info['arppu'] = number_format(Common::safeDivide($daily_record['payAmount'], $payUsers), 2) . '$';
+            $sale_info['arppu'] = number_format(Common::safeDivide($payAmount, $payUsers), 2) . '$';
             // 付费率
             $sale_info['pay_rate'] = number_format(Common::safeDivide($payUsers, $activeUsers), 4) * 100 . "%";
             // 新增用户付费率
             $sale_info['added_pay_rate'] = number_format(Common::safeDivide($addedPayUsers, $addedUsers), 4) * 100 . "%";
 
-            DailyRecord::update($daily_record['id'], $daily_record);
+//            DailyRecord::update($daily_record['id'], $daily_record);
         } else {
             // 活跃用户数
             $sale_info['active_users'] = $daily_record['activeUsers'];
