@@ -184,7 +184,7 @@ if ($search) {
             $sale_info['arppu'] = $daily_record['arppu'];
 //            $sale_info['arppu'] = "0$";
             // 付费率
-            $sale_info['pay_rate'] = $daily_record['payRate'] . "%";
+            $sale_info['pay_rate'] = $daily_record['payRate'];
 //            $sale_info['pay_rate'] = "0%";
             // 新增用户付费率
             $sale_info['added_pay_rate'] = $daily_record['addedPayRate'];
