@@ -36,6 +36,7 @@ if ($search) {
     $nextDayRetained = 0; // 次日留存
 //    $day7Retained = 0; // 7日留存
     for ($i = 0; $i < $days; $i++) {
+        $payNum = 0; // 付费次数
         $payAmount = 0;
 
         $sale_info = [];
@@ -65,6 +66,7 @@ if ($search) {
 
             $conditions = ['purchaseTime' => ['$gte' => $begin_timestamp * 1000, '$lt' => $end_timestamp * 1000]];
             $purchase_records = PurchaseRecord::search($conditions, null, null);
+            $payNum = count($purchase_records);
             foreach ($purchase_records as $value) {
                 $payAmount += (explode("$", $value['productPrice'])[1] * $value['purchaseNum']);
             }
@@ -120,6 +122,8 @@ if ($search) {
 //            $sale_info['day7_retained'] = $day7Retained;
             // 付费信息的ID
             $sale_info['id'] = $daily_record['id'];
+            // 付费次数
+            $sale_info['pay_num'] = $payNum;
             // 付费累计金额
             $sale_info['pay_amount'] = $payAmount . '$';
             // 付费用户数
@@ -147,6 +151,8 @@ if ($search) {
 //            $sale_info['total_retained'] = "0%";
             // 付费信息的ID
             $sale_info['id'] = -1;
+            // 付费次数
+            $sale_info['pay_num'] = 0;
             // 付费累计金额
             $sale_info['pay_amount'] = '0$';
             // 付费用户数
