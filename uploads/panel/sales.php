@@ -20,7 +20,7 @@ if ($search) {
 //    $user_infos = User::search($user_group,$user_name,$start , $page_size);
 } else {
     // 统计当天及前七天的销售数据
-    $days = 1 + 7;
+    $days = 1 + 1;
     $begin_timestamp = 0;
     $end_time = new DateTime();
     $end_time->setTime(0, 0, 0);
@@ -152,42 +152,42 @@ if ($search) {
             }
 
             // 活跃用户数
-            $sale_info['active_users'] = $daily_record['activeUsers'] || 0;
+            $sale_info['active_users'] = $daily_record['activeUsers'];
 //            $sale_info['active_users'] = 0;
             // 新增用户数
-            $sale_info['added_users'] = $daily_record['addedUsers'] || 0;
+            $sale_info['added_users'] = $daily_record['addedUsers'];
 //            $sale_info['added_users'] = 0;
             // 次日留存
-            $sale_info['next_day_retained'] = ($daily_record['nextDayRetained'] || 0) . "%";
+            $sale_info['next_day_retained'] = $daily_record['nextDayRetained'] . "%";
 //            $sale_info['next_day_retained'] = "0%";
 //            // 总留存
 //            $sale_info['total_retained'] = "0%";
             // 付费信息的时间
-            $sale_info['day_time'] = $daily_record['dayTime'] || 0;
+            $sale_info['day_time'] = $daily_record['dayTime'];
 //            $sale_info['day_time'] = 0;
             // 付费次数
-            $sale_info['pay_num'] = $daily_record['payNum'] || 0;
+            $sale_info['pay_num'] = $daily_record['payNum'];
 //            $sale_info['pay_num'] = 0;
             // 付费累计金额
-            $sale_info['pay_amount'] = ($daily_record['payAmount'] || 0) . "$";
+            $sale_info['pay_amount'] = $daily_record['payAmount'] . "$";
 //            $sale_info['pay_amount'] = "0$";
             // 付费用户数
-            $sale_info['pay_users'] = $daily_record['payUsers'] || 0;
+            $sale_info['pay_users'] = $daily_record['payUsers'];
 //            $sale_info['pay_users'] = 0;
             // 新增付费用户数
-            $sale_info['added_pay_users'] = $daily_record['addedPayUsers'] || 0;
+            $sale_info['added_pay_users'] = $daily_record['addedPayUsers'];
 //            $sale_info['added_pay_users'] = 0;
             // ARPU
-            $sale_info['arpu'] = ($daily_record['arpu'] || 0) . "$";
+            $sale_info['arpu'] = $daily_record['arpu'] . "$";
 //            $sale_info['arpu'] = "0$";
             // ARPPU
-            $sale_info['arppu'] = ($daily_record['arppu'] || 0) . "$";
+            $sale_info['arppu'] = $daily_record['arppu'] . "$";
 //            $sale_info['arppu'] = "0$";
             // 付费率
-            $sale_info['pay_rate'] = ($daily_record['payRate'] || 0) . "%";
+            $sale_info['pay_rate'] = $daily_record['payRate'] . "%";
 //            $sale_info['pay_rate'] = "0%";
             // 新增用户付费率
-            $sale_info['added_pay_rate'] = ($daily_record['addedPayRate'] || 0) . "%";
+            $sale_info['added_pay_rate'] = $daily_record['addedPayRate'] . "%";
 //            $sale_info['added_pay_rate'] = "0%";
         }
 
