@@ -9,7 +9,7 @@ class DailyRecord extends Base{
 	// 表名
     private static $table_name = 'dailyrecords';
 	// 查询字段
-	private static $columns = array('id', 'dayTime', 'activeUsers', 'addedUsers', 'nextDayRetained', 'payNum'
+	private static $columns = array('dayTime', 'activeUsers', 'addedUsers', 'nextDayRetained', 'payNum'
                                     , 'payUsers', 'addedPayUsers', 'payAmount', 'addedPayAmount', 'arpu', 'arppu', 'payRate', 'addedPayRate');
 
     public static function __instance($database = OSA_DB_ID)
