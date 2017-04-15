@@ -158,7 +158,7 @@ if ($search) {
             $sale_info['added_users'] = $daily_record['addedUsers'];
 //            $sale_info['added_users'] = 0;
             // 次日留存
-            $sale_info['next_day_retained'] = $daily_record['nextDayRetained'] . "%";
+            $sale_info['next_day_retained'] = $daily_record['nextDayRetained'];
 //            $sale_info['next_day_retained'] = "0%";
 //            // 总留存
 //            $sale_info['total_retained'] = "0%";
@@ -178,16 +178,16 @@ if ($search) {
             $sale_info['added_pay_users'] = $daily_record['addedPayUsers'];
 //            $sale_info['added_pay_users'] = 0;
             // ARPU
-            $sale_info['arpu'] = $daily_record['arpu'] . "$";
+            $sale_info['arpu'] = $daily_record['arpu'];
 //            $sale_info['arpu'] = "0$";
             // ARPPU
-            $sale_info['arppu'] = $daily_record['arppu'] . "$";
+            $sale_info['arppu'] = $daily_record['arppu'];
 //            $sale_info['arppu'] = "0$";
             // 付费率
             $sale_info['pay_rate'] = $daily_record['payRate'] . "%";
 //            $sale_info['pay_rate'] = "0%";
             // 新增用户付费率
-            $sale_info['added_pay_rate'] = $daily_record['addedPayRate'] . "%";
+            $sale_info['added_pay_rate'] = $daily_record['addedPayRate'];
 //            $sale_info['added_pay_rate'] = "0%";
         }
 
