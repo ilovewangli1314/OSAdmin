@@ -63,7 +63,8 @@ if ($search) {
                 }
             }
 
-            Common::print_r_n('$begin_timestamp:' + $begin_timestamp + " $end_timestamp:" + $end_timestamp);
+            Common::print_r_n('log!!!');
+            Common::print_r_n('begin_timestamp:' + $begin_timestamp + 'end_timestamp:' + $end_timestamp);
             $conditions = ['purchaseTime' => ['$gte' => $begin_timestamp * 1000, '$lt' => $end_timestamp * 1000]];
             $purchase_records = PurchaseRecord::search($conditions, null, null);
             $purchase_records = Common::unique_multidim_array($purchase_records, 'userDeviceID');
