@@ -20,7 +20,7 @@ if ($search) {
 //    $user_infos = User::search($user_group,$user_name,$start , $page_size);
 } else {
     // 统计当天及前七天的销售数据
-    $days = 1 + 1;
+    $days = 1 + 2;
     $begin_timestamp = 0;
     $end_time = new DateTime();
     $end_time->setTime(0, 0, 0);
