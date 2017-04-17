@@ -28,8 +28,9 @@ if ($search) {
 
 //    $user_infos = User::search($user_group,$user_name,$start , $page_size);
 } else {
-    // 统计当天及前七天的玩家留存
-    $days = 2;
+    // 设置项目的开始时间
+    $init_timestamp = strtotime('2017-04-15 00:00:00');
+    $days = 99999;
 //    $offsetDays = [-1, -2, -3, -4, -5, -6, -7];
 
     $begin_timestamp = 0;
@@ -58,9 +59,14 @@ if ($search) {
 
         $end_timestamp = $begin_timestamp;
         array_push($player_retaineds, $player_retained);
+
+        // 统计到项目上线的时间为止
+        if ($begin_timestamp <= $init_timestamp) {
+            break;
+        }
     }
 
-    $row_count = $days;
+    $row_count = count($player_retaineds);
     $total_page = $row_count % $page_size == 0 ? $row_count / $page_size : ceil($row_count / $page_size);
     $total_page = $total_page < 1 ? 1 : $total_page;
     $page_no = $page_no > ($total_page) ? ($total_page) : $page_no;
