@@ -109,7 +109,7 @@ if ($search) {
 //        $conditions = ['dayTime' => ['$gte' => $begin_timestamp * 1000, '$lt' => $end_timestamp * 1000]];
 //        $daily_record = DailyRecord::search($conditions)[0];
         $daily_record = [];
-        if ($i == 5) {
+        if ($i == 0) {
             // 付费信息的时间
             $daily_record['dayTime'] = $sale_info['day_time'] = $begin_timestamp;
 //            // 根据玩家的设备ID去重获得付费用户数
