@@ -28,7 +28,7 @@
 </form>
 </div>
     <div class="block">
-        <a href="#page-stats" class="block-heading" data-toggle="collapse">玩家列表</a>
+        <a href="#page-stats" class="block-heading" data-toggle="collapse">玩家留存</a>
         <div id="page-stats" class="block-body collapse in">
 			<table class="table table-striped">
               <thead>
