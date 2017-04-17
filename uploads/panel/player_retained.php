@@ -50,8 +50,8 @@ if ($search) {
 
         for ($j = 1; $j <= $i; $j++) {
             $timeRange = DateUtils::getTimeRange(DATE_UNIT_DAY, $j, $begin_timestamp);
-            $conditions = array_merge($conditions, ['loginTime' => ['$gte' => $timeRange['minTime'] * 1000]]);
-            $loginPlayerNum = count(Player::search($conditions));
+            $retainedConditions = array_merge($conditions, ['loginTime' => ['$gte' => $timeRange['minTime'] * 1000]]);
+            $loginPlayerNum = count(Player::search($retainedConditions));
 
             $player_retained['day_' . $j] = number_format(Common::safeDivide($loginPlayerNum, $registPlayerNum), 4) * 100 . "%";
         }
