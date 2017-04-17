@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.15, created on 2017-04-17 16:05:42
+<?php /* Smarty version Smarty-3.1.15, created on 2017-04-17 16:11:12
          compiled from "/Library/WebServer/Documents/OSAdmin/uploads/include/template/panel/player_retained.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:164087821658f4730587d712-80291863%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'e48605f58d0d1f164f2e79dfc9951ad24dbde0f5' => 
     array (
       0 => '/Library/WebServer/Documents/OSAdmin/uploads/include/template/panel/player_retained.tpl',
-      1 => 1492416333,
+      1 => 1492416625,
       2 => 'file',
     ),
   ),
@@ -71,7 +71,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
               <thead>
                 <tr>
 					<th style="width:80px">日期</th>
-					<th style="width:150px">1日</th>
+					<th style="width:80px">1日</th>
 					<th style="width:80px">2日</th>
 					<th style="width:80px">3日</th>
 					<th style="width:80px">4日</th>

@@ -50,7 +50,7 @@ if ($search) {
 
         for ($j = 1; $j <= $i; $j++) {
             $timeRange = DateUtils::getTimeRange(DATE_UNIT_DAY, $j, $begin_timestamp);
-            array_push($conditions, ['loginTime' => ['$gte' => $timeRange['minTime'] * 1000, '$lt' => $timeRange['maxTime'] * 1000]]);
+            $conditions = array_merge($conditions, ['loginTime' => ['$gte' => $timeRange['minTime'] * 1000]]);
             $loginPlayerNum = count(Player::search($conditions));
 
             $player_retained['day_' . $j] = number_format(Common::safeDivide($loginPlayerNum, $registPlayerNum), 4) * 100 . "%";
@@ -59,9 +59,15 @@ if ($search) {
         $end_timestamp = $begin_timestamp;
         array_push($player_retaineds, $player_retained);
     }
+
+    $row_count = $days;
+    $total_page = $row_count % $page_size == 0 ? $row_count / $page_size : ceil($row_count / $page_size);
+    $total_page = $total_page < 1 ? 1 : $total_page;
+    $page_no = $page_no > ($total_page) ? ($total_page) : $page_no;
+    $start = ($page_no - 1) * $page_size;
 }
 
-$page_html = Pagination::showPager("players.php?player_id=$player_id&search=$search", $page_no, $page_size, $row_count);
+$page_html = Pagination::showPager("player_retaineds.php?player_id=$player_id&search=$search", $page_no, $page_size, $row_count);
 
 //追加操作的确认层
 $confirm_html = OSAdmin::renderJsConfirm("icon-pause,icon-play,icon-remove");

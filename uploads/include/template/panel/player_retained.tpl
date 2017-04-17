@@ -34,7 +34,7 @@
               <thead>
                 <tr>
 					<th style="width:80px">日期</th>
-					<th style="width:150px">1日</th>
+					<th style="width:80px">1日</th>
 					<th style="width:80px">2日</th>
 					<th style="width:80px">3日</th>
 					<th style="width:80px">4日</th>
