@@ -74,11 +74,13 @@ if ($search) {
             foreach ($purchase_records as $value) {
                 $payUsers++;
 
-                $row_count = count(Player::search());
                 $user = Player::search(['deviceID' => $value['userDeviceID']])[0];
                 if (DateUtils::checkIsSameDay($user['loginTime'], $user['registTime'])) {
                     $addedPayUsers++;
                 }
+
+                // 注意手动释放内存
+                unset($user);
             }
 
             // 实时计算次日留存
