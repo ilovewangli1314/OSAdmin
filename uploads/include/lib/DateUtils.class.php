@@ -51,22 +51,29 @@ class DateUtils
         echo date('Y-m-d H:i:s', mktime(23, 59, 59, $season * 3, date('t', mktime(0, 0, 0, $season * 3, 1, date("Y"))), date('Y'))), "\n";
     }
 
-    public static function getTimeRange($dateUnit, $offset)
+    public static function getTimeRange($dateUnit, $offset, $timestamp)
     {
         $day = date("d");
         $week = date("w");
         $month = date("m");
+        $year = date("Y");
+        if ($timestamp) {
+            $day = date("d", $timestamp);
+            $week = date("w", $timestamp);
+            $month = date("m", $timestamp);
+            $year = date("Y", $timestamp);
+        }
 
         $minTime = $maxTime = 0;
         if ($dateUnit == DATE_UNIT_DAY) {
-            $minTime = mktime(0, 0, 0, date("m"), date("d") + $offset, date("Y"));
-            $maxTime = mktime(0, 0, 0, date("m"), date("d") + $offset + 1, date("Y"));
+            $minTime = mktime(0, 0, 0, $month, $day + $offset, $year);
+            $maxTime = mktime(0, 0, 0, $month, $day + $offset + 1, $year);
         } else if ($dateUnit == DATE_UNIT_WEEK) {
-            $minTime = mktime(0, 0, 0, date("m"), date("d") - date("w") + 1 + (7 * $offset), date("Y"));
-            $maxTime = mktime(0, 0, 0, date("m"), date("d") - date("w") + 7 + 1 + (7 * $offset), date("Y"));
+            $minTime = mktime(0, 0, 0, $month, $day - $week + 1 + (7 * $offset), $year);
+            $maxTime = mktime(0, 0, 0, $month, $day - $week + 7 + 1 + (7 * $offset), $year);
         } else if ($dateUnit == DATE_UNIT_MONTH) {
-            $minTime = mktime(0, 0, 0, date("m") + $offset, 1, date("Y"));
-            $maxTime = mktime(0, 0, 0, date("m") + 1 + $offset, 1, date("Y"));
+            $minTime = mktime(0, 0, 0, $month + $offset, 1, $year);
+            $maxTime = mktime(0, 0, 0, $month + 1 + $offset, 1, $year);
         }
 
 //        echo '<br>minTime:<br>' . date("Y-m-d H:i:s", $minTime);

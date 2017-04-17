@@ -84,7 +84,7 @@ if ($search) {
             }
 
             // 实时计算次日留存
-            $timeRange = DateUtils::getTimeRange(DATE_UNIT_DAY, -1);
+            $timeRange = DateUtils::getTimeRange(DATE_UNIT_DAY, -1, null);
 //            echo '<br>minTime:<br>' . date("Y-m-d H:i:s", $timeRange['minTime']);
 //            echo '<br>maxTime:<br>' . date("Y-m-d H:i:s", $timeRange['maxTime']);
             $conditions = ['registTime' => ['$gte' => $timeRange['minTime'] * 1000, '$lt' => $timeRange['maxTime'] * 1000]];
