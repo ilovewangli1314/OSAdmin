@@ -46,7 +46,7 @@
 					<th style="width:140px">付费累计金额</th>
 					<th style="width:100px">ARPU</th>
 					<th style="width:100px">ARPPU</th>
-					<th style="width:50px">操作</th>
+					<!-- <th style="width:50px">操作</th> -->
 				</tr>
 				</thead>
 				<tbody>
@@ -65,9 +65,9 @@
 						<td><{$sale_info.arpu}></td>
 						<td><{$sale_info.arppu}></td>
 
-						<td>
+						<!-- <td>
 							<a data-toggle="modal" href="sale_detail.php?sale_id=<{$sale_info.day_time}>" title= "查看" ><i class="icon-pencil" href="sale_detail.php?sale_id=<{$sale_info.day_time}>" ></i></a>
-						</td>
+						</td> -->
 					</tr>
 					<{/foreach}>
 				</tbody>
