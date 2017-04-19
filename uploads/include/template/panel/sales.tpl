@@ -40,8 +40,8 @@
 					<!-- <th style="width:120px">次日留存</th> -->
 					<th style="width:100px">付费用户数</th>
 					<th style="width:100px">付费率</th>
-					<th style="width:140px">新增付费用户数</th>
-					<th style="width:140px">新增用户付费率</th>
+					<!-- <th style="width:140px">新增付费用户数</th> -->
+					<!-- <th style="width:140px">新增用户付费率</th> -->
 					<th style="width:80px">付费次数</th>
 					<th style="width:140px">付费累计金额</th>
 					<th style="width:100px">ARPU</th>
@@ -58,8 +58,8 @@
 						<!-- <td><{$sale_info.next_day_retained}></td> -->
 						<td><{$sale_info.pay_users}></td>
 						<td><{$sale_info.pay_rate}></td>
-						<td><{$sale_info.added_pay_users}></td>
-						<td><{$sale_info.added_pay_rate}></td>
+						<!-- <td><{$sale_info.added_pay_users}></td> -->
+						<!-- <td><{$sale_info.added_pay_rate}></td> -->
 						<td><{$sale_info.pay_num}></td>
 						<td><{$sale_info.pay_amount}></td>
 						<td><{$sale_info.arpu}></td>
