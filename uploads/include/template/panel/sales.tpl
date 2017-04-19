@@ -37,7 +37,7 @@
 					<th style="width:140px">日期</th>
 					<th style="width:100px">活跃用户数</th>
 					<th style="width:100px">新增用户数</th>
-					<th style="width:120px">次日留存</th>
+					<!-- <th style="width:120px">次日留存</th> -->
 					<th style="width:100px">付费用户数</th>
 					<th style="width:100px">付费率</th>
 					<th style="width:140px">新增付费用户数</th>
@@ -55,7 +55,7 @@
 						<td><{$sale_info.date}></td>
 						<td><{$sale_info.active_users}></td>
 						<td><{$sale_info.added_users}></td>
-						<td><{$sale_info.next_day_retained}></td>
+						<!-- <td><{$sale_info.next_day_retained}></td> -->
 						<td><{$sale_info.pay_users}></td>
 						<td><{$sale_info.pay_rate}></td>
 						<td><{$sale_info.added_pay_users}></td>
