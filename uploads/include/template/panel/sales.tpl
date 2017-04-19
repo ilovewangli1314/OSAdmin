@@ -7,7 +7,7 @@
 <{$osadmin_action_alert}>
 <{$osadmin_quick_note}>
 
-<div class="btn-toolbar" style="margin-bottom:2px;">
+<!-- <div class="btn-toolbar" style="margin-bottom:2px;">
 	<a data-toggle="collapse" data-target="#search"  href="#" title= "检索"><button class="btn btn-primary" style="margin-left:5px"><i class="icon-search"></i></button></a>
 </div>
 <{if $_GET.search }>
@@ -25,7 +25,7 @@
 		<button type="submit" class="btn btn-primary">检索</button>
 	</div>
 	<div style="clear:both;"></div>
-</form>
+</form> -->
 </div>
 
 	<div class="block">

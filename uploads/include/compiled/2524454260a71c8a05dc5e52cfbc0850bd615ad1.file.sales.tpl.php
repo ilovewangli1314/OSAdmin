@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.15, created on 2017-04-19 16:12:17
+<?php /* Smarty version Smarty-3.1.15, created on 2017-04-19 16:18:03
          compiled from "/Library/WebServer/Documents/OSAdmin/uploads/include/template/panel/sales.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:128125893558da27c7263d27-99341063%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '2524454260a71c8a05dc5e52cfbc0850bd615ad1' => 
     array (
       0 => '/Library/WebServer/Documents/OSAdmin/uploads/include/template/panel/sales.tpl',
-      1 => 1492589486,
+      1 => 1492589876,
       2 => 'file',
     ),
   ),
@@ -43,7 +43,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 <?php echo $_smarty_tpl->tpl_vars['osadmin_quick_note']->value;?>
 
 
-<div class="btn-toolbar" style="margin-bottom:2px;">
+<!-- <div class="btn-toolbar" style="margin-bottom:2px;">
 	<a data-toggle="collapse" data-target="#search"  href="#" title= "检索"><button class="btn btn-primary" style="margin-left:5px"><i class="icon-search"></i></button></a>
 </div>
 <?php if ($_smarty_tpl->tpl_vars['_GET']->value['search']) {?>
@@ -62,7 +62,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 		<button type="submit" class="btn btn-primary">检索</button>
 	</div>
 	<div style="clear:both;"></div>
-</form>
+</form> -->
 </div>
 
 	<div class="block">
