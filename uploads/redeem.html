@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>
+        Redeem
+    </title>
+    <meta http-equiv="content-type" content="text/html;charset=utf-8"/>
+    <meta http-equiv="content-style-type" content="text/css"/>
+    <meta http-equiv="content-scripte-type" content="text/javascript"/>
+    <meta name="author" content="haiai"/>
+    <meta name="version" content="1.0"/>
+</head>
+<body>
+<!-- a标签的链接，设置为对应的下载链接；点击打开的动作，在click事件中注册 -->
+<!--<a href="https://itunes.apple.com/us/app/slots-clash-of-gods/id1203134198?ls=1&mt=8" id="openApp" style="display: none">Slots-->
+<!--    Clash of Gods</a>-->
+<script type="text/javascript">
+    var src = window.location.href;
+    var params = src.substr(src.indexOf("?"));
+    window.location.href = "fb1262614157160006://" + params;
+    var loadDateTime = Date.now();
+    setTimeout(function () {
+        var timeOutDateTime = Date.now();
+        if (timeOutDateTime - loadDateTime < 1100) {
+               window.location.href = "https://itunes.apple.com/us/app/slots-clash-of-gods/id1203134198?ls=1&mt=8";
+        }
+    }, 1000);
+</script>
+</body>
+</html>
