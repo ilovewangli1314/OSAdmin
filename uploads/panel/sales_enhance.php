@@ -74,8 +74,8 @@ if ($search) {
             // 标示是否新增的设备用于计算玩家数
             $isAddedDevice = false;
             foreach ($purchase_records as $value) {
-                $payNum = (explode("$", $value['productPrice'])[1] * $value['purchaseNum']);
-                $payAmount += $payNum;
+                $addedPay = (explode("$", $value['productPrice'])[1] * $value['purchaseNum']);
+                $payAmount += $addedPay;
 
                 array_push($userDeviceIDs, $value['userDeviceID']);
                 $isAddedDevice = (array_search($value['userDeviceID'], $userDeviceIDs) == false);
@@ -85,7 +85,7 @@ if ($search) {
 
                 $user = Player::search(['deviceID' => $value['userDeviceID']])[0];
                 if (DateUtils::checkIsSameDay($user['loginTime'], $user['registTime'])) {
-                    $addedPayAmount += $payNum;
+                    $addedPayAmount += $addedPay;
 
                     if ($isAddedDevice) {
                         $addedPayUsers++;
