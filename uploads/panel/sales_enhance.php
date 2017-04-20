@@ -37,6 +37,7 @@ if ($search) {
     $nextDayRetained = 0; // 次日留存
 //    $day7Retained = 0; // 7日留存
     for ($i = 0; $i < $days; $i++) {
+        $addedPayAmount = 0;
         $payNum = 0; // 付费次数
         $payAmount = 0;
 
@@ -65,24 +66,47 @@ if ($search) {
                 }
             }
 
+            // 计算付费累计金额和新增玩家付费额
             $conditions = ['purchaseTime' => ['$gte' => $begin_timestamp * 1000, '$lt' => $end_timestamp * 1000]];
             $purchase_records = PurchaseRecord::search($conditions, null, null);
             $payNum = count($purchase_records);
+            $userDeviceIDs = [];
+            // 标示是否新增的设备用于计算玩家数
+            $isAddedDevice = false;
             foreach ($purchase_records as $value) {
-                $payAmount += (explode("$", $value['productPrice'])[1] * $value['purchaseNum']);
-            }
-            $purchase_records = Common::unique_multidim_array($purchase_records, 'userDeviceID');
-            foreach ($purchase_records as $value) {
-                $payUsers++;
+                $payNum = (explode("$", $value['productPrice'])[1] * $value['purchaseNum']);
+                $payAmount += $payNum;
+
+                array_push($userDeviceIDs, $value['userDeviceID']);
+                $isAddedDevice = (array_search($value['userDeviceID'], $userDeviceIDs) < 0);
+                if ($isAddedDevice) {
+                    $payUsers++;
+                }
 
                 $user = Player::search(['deviceID' => $value['userDeviceID']])[0];
                 if (DateUtils::checkIsSameDay($user['loginTime'], $user['registTime'])) {
-                    $addedPayUsers++;
+                    $addedPayAmount += $payNum;
+
+                    if ($isAddedDevice) {
+                        $addedPayUsers++;
+                    }
                 }
 
                 // 注意手动释放内存
                 unset($user);
             }
+//            $purchase_records = Common::unique_multidim_array($purchase_records, 'userDeviceID');
+//            foreach ($purchase_records as $value) {
+//                $payUsers++;
+//
+//                $user = Player::search(['deviceID' => $value['userDeviceID']])[0];
+//                if (DateUtils::checkIsSameDay($user['loginTime'], $user['registTime'])) {
+//                    $addedPayUsers++;
+//                }
+//
+//                // 注意手动释放内存
+//                unset($user);
+//            }
 
             // 实时计算次日留存
             $timeRange = DateUtils::getTimeRange(DATE_UNIT_DAY, -1, null);
@@ -130,6 +154,8 @@ if ($search) {
             $daily_record['payUsers'] = $sale_info['pay_users'] = $payUsers;
             // 新增付费用户数
             $daily_record['addedPayUsers'] = $sale_info['added_pay_users'] = $addedPayUsers;
+            // 新增付费额
+            $daily_record['addedPayAmount'] = $sale_info['added_pay_amount'] = $addedPayAmount;
             // ARPU
             $daily_record['arpu'] = $sale_info['arpu'] = number_format(Common::safeDivide($payAmount, $activeUsers), 2) . '$';
             // ARPPU
@@ -168,6 +194,8 @@ if ($search) {
             $sale_info['pay_users'] = $daily_record['payUsers'];
             // 新增付费用户数
             $sale_info['added_pay_users'] = $daily_record['addedPayUsers'];
+            // 新增付费额
+            $sale_info['added_pay_amount'] = $daily_record['addedPayAmount'];
             // ARPU
             $sale_info['arpu'] = $daily_record['arpu'];
             // ARPPU

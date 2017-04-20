@@ -37,13 +37,14 @@
 					<th style="width:140px">日期</th>
 					<th style="width:100px">活跃用户数</th>
 					<th style="width:100px">新增用户数</th>
-					<th style="width:120px">次日留存</th>
+					<th style="width:100px">次日留存</th>
 					<th style="width:100px">付费用户数</th>
 					<th style="width:100px">付费率</th>
-					<th style="width:140px">新增付费用户数</th>
-					<th style="width:140px">新增用户付费率</th>
+					<th style="width:100px">新增付费用户数</th>
+					<th style="width:100px">新增付费率</th>
+					<th style="width:100px">新增付费额</th>
 					<th style="width:80px">付费次数</th>
-					<th style="width:140px">付费累计金额</th>
+					<th style="width:100px">付费累计金额</th>
 					<th style="width:100px">ARPU</th>
 					<th style="width:100px">ARPPU</th>
 					<th style="width:50px">操作</th>
@@ -60,6 +61,7 @@
 						<td><{$sale_info.pay_rate}></td>
 						<td><{$sale_info.added_pay_users}></td>
 						<td><{$sale_info.added_pay_rate}></td>
+						<td><{$sale_info.added_pay_amount}></td>
 						<td><{$sale_info.pay_num}></td>
 						<td><{$sale_info.pay_amount}></td>
 						<td><{$sale_info.arpu}></td>

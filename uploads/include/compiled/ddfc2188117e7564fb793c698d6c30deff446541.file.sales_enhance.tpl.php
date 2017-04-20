@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.15, created on 2017-04-20 17:32:39
+<?php /* Smarty version Smarty-3.1.15, created on 2017-04-20 18:20:46
          compiled from "/Library/WebServer/Documents/OSAdmin/uploads/include/template/panel/sales_enhance.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:11645156158f880375d1698-16810165%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'ddfc2188117e7564fb793c698d6c30deff446541' => 
     array (
       0 => '/Library/WebServer/Documents/OSAdmin/uploads/include/template/panel/sales_enhance.tpl',
-      1 => 1492680648,
+      1 => 1492683636,
       2 => 'file',
     ),
   ),
@@ -15,6 +15,8 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   'function' => 
   array (
   ),
+  'version' => 'Smarty-3.1.15',
+  'unifunc' => 'content_58f8803774f990_93700332',
   'variables' => 
   array (
     'osadmin_action_alert' => 0,
@@ -26,8 +28,6 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'osadmin_action_confirm' => 0,
   ),
   'has_nocache_code' => false,
-  'version' => 'Smarty-3.1.15',
-  'unifunc' => 'content_58f8803774f990_93700332',
 ),false); /*/%%SmartyHeaderCode%%*/?>
 <?php if ($_valid && !is_callable('content_58f8803774f990_93700332')) {function content_58f8803774f990_93700332($_smarty_tpl) {?><?php echo $_smarty_tpl->getSubTemplate ("header.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, null, array(), 0);?>
 
@@ -74,13 +74,14 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 					<th style="width:140px">日期</th>
 					<th style="width:100px">活跃用户数</th>
 					<th style="width:100px">新增用户数</th>
-					<th style="width:120px">次日留存</th>
+					<th style="width:100px">次日留存</th>
 					<th style="width:100px">付费用户数</th>
 					<th style="width:100px">付费率</th>
-					<th style="width:140px">新增付费用户数</th>
-					<th style="width:140px">新增用户付费率</th>
+					<th style="width:100px">新增付费用户数</th>
+					<th style="width:100px">新增付费率</th>
+					<th style="width:100px">新增付费额</th>
 					<th style="width:80px">付费次数</th>
-					<th style="width:140px">付费累计金额</th>
+					<th style="width:100px">付费累计金额</th>
 					<th style="width:100px">ARPU</th>
 					<th style="width:100px">ARPPU</th>
 					<th style="width:50px">操作</th>
@@ -108,6 +109,8 @@ $_smarty_tpl->tpl_vars['sale_info']->_loop = true;
 						<td><?php echo $_smarty_tpl->tpl_vars['sale_info']->value['added_pay_users'];?>
 </td>
 						<td><?php echo $_smarty_tpl->tpl_vars['sale_info']->value['added_pay_rate'];?>
+</td>
+						<td><?php echo $_smarty_tpl->tpl_vars['sale_info']->value['added_pay_amount'];?>
 </td>
 						<td><?php echo $_smarty_tpl->tpl_vars['sale_info']->value['pay_num'];?>
 </td>
