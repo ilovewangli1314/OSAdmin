@@ -149,13 +149,14 @@ if ($search) {
             $daily_record['payNum'] = $sale_info['pay_num'] = $payNum;
             // 付费累计金额
             $daily_record['payAmount'] = number_format($payAmount, 2);
-            $sale_info['pay_amount'] = $payAmount . '$';
+            $sale_info['pay_amount'] = $daily_record['payAmount'] . '$';
             // 付费用户数
             $daily_record['payUsers'] = $sale_info['pay_users'] = $payUsers;
             // 新增付费用户数
             $daily_record['addedPayUsers'] = $sale_info['added_pay_users'] = $addedPayUsers;
             // 新增付费额
-            $daily_record['addedPayAmount'] = $sale_info['added_pay_amount'] = $addedPayAmount;
+            $daily_record['addedPayAmount'] = number_format($addedPayAmount, 2);
+            $sale_info['added_pay_amount'] = $daily_record['addedPayAmount'] . '$';
             // ARPU
             $daily_record['arpu'] = $sale_info['arpu'] = number_format(Common::safeDivide($payAmount, $activeUsers), 2) . '$';
             // ARPPU
