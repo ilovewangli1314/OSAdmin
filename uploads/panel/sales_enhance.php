@@ -78,7 +78,7 @@ if ($search) {
                 $payAmount += $payNum;
 
                 array_push($userDeviceIDs, $value['userDeviceID']);
-                $isAddedDevice = (array_search($value['userDeviceID'], $userDeviceIDs) < 0);
+                $isAddedDevice = (array_search($value['userDeviceID'], $userDeviceIDs) == false);
                 if ($isAddedDevice) {
                     $payUsers++;
                 }
