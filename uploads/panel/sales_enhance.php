@@ -95,18 +95,6 @@ if ($search) {
                 // 注意手动释放内存
                 unset($user);
             }
-//            $purchase_records = Common::unique_multidim_array($purchase_records, 'userDeviceID');
-//            foreach ($purchase_records as $value) {
-//                $payUsers++;
-//
-//                $user = Player::search(['deviceID' => $value['userDeviceID']])[0];
-//                if (DateUtils::checkIsSameDay($user['loginTime'], $user['registTime'])) {
-//                    $addedPayUsers++;
-//                }
-//
-//                // 注意手动释放内存
-//                unset($user);
-//            }
 
             // 实时计算次日留存
             $timeRange = DateUtils::getTimeRange(DATE_UNIT_DAY, -1, null);
