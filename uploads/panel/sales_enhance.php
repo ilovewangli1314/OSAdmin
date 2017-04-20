@@ -77,8 +77,8 @@ if ($search) {
                 $addedPay = (explode("$", $value['productPrice'])[1] * $value['purchaseNum']);
                 $payAmount += $addedPay;
 
-                array_push($userDeviceIDs, $value['userDeviceID']);
                 $isAddedDevice = (array_search($value['userDeviceID'], $userDeviceIDs) == false);
+                array_push($userDeviceIDs, $value['userDeviceID']);
                 if ($isAddedDevice) {
                     $payUsers++;
                 }
