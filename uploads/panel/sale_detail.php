@@ -1,6 +1,6 @@
 <?php
 require('../include/init.inc.php');
-$sale_id = '';
+$day_time = '';
 extract($_REQUEST, EXTR_IF_EXISTS);
 
 Common::checkParam($sale_id);

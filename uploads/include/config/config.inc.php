@@ -61,7 +61,7 @@ define('DEBUG' ,false);
 define('PAGE_SIZE', 10);
 
 // 统计数据的起始时间
-define('STAT_BEGIN_TIME', '2017-03-27 00:00:00');
+define('STAT_BEGIN_TIME', '2017-04-15 00:00:00');
 
 $OSA_TEMPLATES = array(
 	'default' => '默认模板',

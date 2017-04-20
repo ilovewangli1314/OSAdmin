@@ -197,7 +197,7 @@ if ($search) {
 //    Common::print_r_n(count($sale_infos));
 }
 
-$page_html = Pagination::showPager("sales.php?search=$search", $page_no, $page_size, $row_count);
+$page_html = Pagination::showPager("sales_enhance.php?search=$search", $page_no, $page_size, $row_count);
 
 //追加操作的确认层
 $confirm_html = OSAdmin::renderJsConfirm("icon-pause,icon-play,icon-remove");
@@ -207,4 +207,4 @@ Template::assign ( '_GET', $_GET );
 Template::assign ( 'page_no', $page_no );
 Template::assign ( 'page_html', $page_html );
 Template::assign ( 'osadmin_action_confirm' , $confirm_html);
-Template::display ( 'panel/sales.tpl' );
+Template::display ( 'panel/sales_enhance.tpl' );

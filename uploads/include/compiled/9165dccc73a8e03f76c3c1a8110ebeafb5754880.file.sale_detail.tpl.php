@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.15, created on 2017-03-29 18:27:16
+<?php /* Smarty version Smarty-3.1.15, created on 2017-04-20 17:18:56
          compiled from "/Library/WebServer/Documents/OSAdmin/uploads/include/template/panel/sale_detail.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:152418817558db7d2e9ae368-81717431%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '9165dccc73a8e03f76c3c1a8110ebeafb5754880' => 
     array (
       0 => '/Library/WebServer/Documents/OSAdmin/uploads/include/template/panel/sale_detail.tpl',
-      1 => 1490780419,
+      1 => 1492679931,
       2 => 'file',
     ),
   ),
@@ -21,7 +21,6 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   array (
     'osadmin_action_alert' => 0,
     'osadmin_quick_note' => 0,
-    'player' => 0,
     'sale_infos' => 0,
     'sale_info' => 0,
   ),
@@ -40,33 +39,6 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 <?php echo $_smarty_tpl->tpl_vars['osadmin_quick_note']->value;?>
 
 <div class="well">
-    <ul class="nav nav-tabs">
-      <li class="active"><a href="#home" data-toggle="tab">请修改账号资料</a></li>
-    </ul>
-
-	<div id="myTabContent" class="tab-content">
-		<div class="tab-pane active in" id="home">
-
-			<form id="tab" method="post" action="" autocomplete="off">
-				<label>ID<span class="label label-info">不可修改</span></label>
-				<input type="text" name="player_id" value="<?php echo $_smarty_tpl->tpl_vars['player']->value['id'];?>
-" class="input-xlarge" readonly="true">
-				<label>注册时间<span class="label label-important">不可修改</span></label>
-				<input type="text" name="player_time" value="<?php echo $_smarty_tpl->tpl_vars['player']->value['time'];?>
-" class="input-xlarge" readonly="true">
-				<label>金币数</label>
-				<input type="text" name="player_coins" value="<?php echo $_smarty_tpl->tpl_vars['player']->value['data']['key_user_base_data']['userCoins'];?>
-"
-					   class="input-xlarge" required="true">
-				<div class="btn-toolbar">
-					<button type="submit" class="btn btn-primary"><strong>提交</strong></button>
-					<div class="btn-group"></div>
-				</div>
-			</form>
-
-		</div>
-	</div>
-
 	<div class="block">
 		<a href="#page-stats" class="block-heading" data-toggle="collapse">商品列表</a>
 		<div id="page-stats" class="block-body collapse in">
