@@ -41,6 +41,10 @@ class Player extends Base{
                 if ($item['registTime']) {
                     $item['registTime'] = $item['registTime'] / 1000;
                 }
+                // 旧版本时的玩家注册时间字段名为'time'
+                if ($item['time']) {
+                    $item['time'] = $item['time'] / 1000;
+                }
             }
 
             return $list[0];
@@ -82,6 +86,10 @@ class Player extends Base{
                 }
                 if ($item['registTime']) {
                     $item['registTime'] = $item['registTime'] / 1000;
+                }
+                // 旧版本时的玩家注册时间字段名为'time'
+                if ($item['time']) {
+                    $item['time'] = $item['time'] / 1000;
                 }
             }
 
