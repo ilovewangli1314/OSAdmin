@@ -18,7 +18,7 @@ class User extends Base{
 		$sql= "select * ,g.group_name from ".self::getTableName() ." u,".UserGroup::getTableName()." g where u.user_name='$user_name' and u.user_group=g.group_id";
 		$list = $db->query($sql)->fetch();// self::getTableName(), self::$columns, $condition );
 		if ($list) {
-			$list['login_time']=Common::getDateTime($list['login_time']);
+			$list['login_time']=DateUtils::getDateStr($list['login_time']);
 			return $list;
 		}
 		return array ();
@@ -36,7 +36,7 @@ class User extends Base{
 		$list = $db->select ( self::getTableName(), self::$columns, $condition );
 		
 		if ($list) {
-			$list[0]['login_time']=Common::getDateTime($list[0]['login_time']);
+			$list[0]['login_time']=DateUtils::getDateStr($list[0]['login_time']);
 			return $list [0];
 		}
 		return array ();
@@ -70,7 +70,7 @@ class User extends Base{
 		if(!empty($list)){
 			foreach($list as &$item){
 				
-				$item['login_time']=Common::getDateTime($item['login_time']);
+				$item['login_time']=DateUtils::getDateStr($item['login_time']);
 			}
 		}
 		
@@ -103,7 +103,7 @@ class User extends Base{
 		if(!empty($list)){
 			foreach($list as &$item){
 				
-				$item['login_time']=Common::getDateTime($item['login_time']);
+				$item['login_time']=DateUtils::getDateStr($item['login_time']);
 			}
 		}
 		if ($list) {
@@ -124,7 +124,7 @@ class User extends Base{
 				if($item['login_time']==null){
 					;
 				}else{
-					$item['login_time']=Common::getDateTime($item['login_time']);
+					$item['login_time']=DateUtils::getDateStr($item['login_time']);
 				}
 			}
 			return $list;
@@ -288,7 +288,7 @@ class User extends Base{
 		$update_data = array ('login_ip' => $login_ip, 'login_time' => $login_time );
 		User::updateUser ( $user_info['user_id'], $update_data );
 		$user_info['login_ip']=$login_ip;
-		$user_info['login_time']=Common::getDateTime($login_time);
+		$user_info['login_time']=DateUtils::getDateStr($login_time);
 		UserSession::setSessionInfo( $user_info);
 	}
 }

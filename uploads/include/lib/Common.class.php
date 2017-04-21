@@ -119,15 +119,6 @@ class Common {
 		}
 		return ($ip);
 	}
-	
-	public static function getDateTime($time = null) {
-		
-		return (!is_numeric($time)) ? date ( 'Y-m-d H:i:s' ) : date( 'Y-m-d H:i:s', $time);
-	}
-
-    public static function getDateStr($time = null) {
-        return (!is_numeric($time)) ? date ( 'Y-m-d' ) : date( 'Y-m-d', $time);
-    }
 
 	public static function getTime() {
 		return strtotime(date( 'Y-m-d H:i:s' ));

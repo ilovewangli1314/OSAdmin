@@ -8,8 +8,8 @@ if(!defined('ACCESS')) {exit('Access denied.');}
 class Player extends Base{
 	// 表名
     private static $table_name = 'users';
-	// 查询字段
-	private static $columns = array('id', 'registTime', 'loginTime');
+	// 查询字段('time'是老版本时的玩家登录时间)
+	private static $columns = array('id', 'time', 'registTime', 'loginTime', 'deviceID', 'deviceInfo', 'data');
 	//状态定义
 	const ACTIVE = 1;
 	const DEACTIVE = 0;
@@ -37,13 +37,21 @@ class Player extends Base{
                 // 时间单位需要从微妙转换成秒
                 if ($item['loginTime']) {
                     $item['loginTime'] = $item['loginTime'] / 1000;
+                    $item['loginTimeStr'] = DateUtils::getDateStr($item['loginTime']);
                 }
+
                 if ($item['registTime']) {
                     $item['registTime'] = $item['registTime'] / 1000;
+                    $item['registTimeStr'] = DateUtils::getDateStr($item['registTime']);
                 }
-                // 旧版本时的玩家注册时间字段名为'time'
-                if ($item['time']) {
+                // 旧版本时的玩家登录时间字段名为'time'
+                else if ($item['time']) {
                     $item['time'] = $item['time'] / 1000;
+                    $item['registTimeStr'] = DateUtils::getDateStr($item['time']);
+                }
+
+                if ($item['data'] && $item['data']['key_iap_data'] && $item['data']['key_iap_data']['paySlots']) {
+                    $item['paySlotsStr'] = implode(',', $item['data']['key_iap_data']['paySlots']);
                 }
             }
 
@@ -64,7 +72,7 @@ class Player extends Base{
 		if(!empty($list)){
 			foreach($list as &$item){
 				
-				$item['login_time']=Common::getDateTime($item['login_time']);
+				$item['login_time'] = DateUtils::getDateStr($item['login_time']);
 			}
 		}
 		
@@ -83,13 +91,17 @@ class Player extends Base{
                 // 时间单位需要从微妙转换成秒
                 if ($item['loginTime']) {
                     $item['loginTime'] = $item['loginTime'] / 1000;
+                    $item['loginTimeStr'] = DateUtils::getDateStr($item['loginTime']);
                 }
+
                 if ($item['registTime']) {
                     $item['registTime'] = $item['registTime'] / 1000;
+                    $item['registTimeStr'] = DateUtils::getDateStr($item['registTime']);
                 }
-                // 旧版本时的玩家注册时间字段名为'time'
-                if ($item['time']) {
+                // 旧版本时的玩家登录时间字段名为'time'
+                else if ($item['time']) {
                     $item['time'] = $item['time'] / 1000;
+                    $item['registTimeStr'] = DateUtils::getDateStr($item['time']);
                 }
             }
 

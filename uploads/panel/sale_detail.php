@@ -38,11 +38,7 @@ foreach ($purchase_records as $value) {
         $user_info['deviceModel'] = $value['userDeviceInfo']['deviceModel'];
         $user_info['countryCode'] = $value['userDeviceInfo']['countryCode'];
         $user = Player::search(['deviceID' => $value['userDeviceID']])[0];
-        if ($user['registTime'] > 0) {
-            $user_info['registTime'] = Common::getDateTime($user['registTime']);
-        } else {
-            $user_info['registTime'] = Common::getDateTime($user['time']);
-        }
+        $user_info['registTimeStr'] = $user['registTimeStr'];
         $user_info['curTaskID'] = $value['userData']['key_task_data']['key_task_curtaskid'];
 
         $user_infos[$value['userDeviceID']] = $user_info;

@@ -44,7 +44,7 @@ if ($search) {
 
         $begin_timestamp = $end_timestamp - 24 * 60 * 60;
         // 日期
-        $sale_info['date'] = Common::getDateStr($begin_timestamp);
+        $sale_info['date'] = DateUtils::getDateStr($begin_timestamp, true);
 //        Common::print_r_n($begin_timestamp);
 
 //        // 付费累计金额

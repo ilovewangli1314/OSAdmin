@@ -47,7 +47,7 @@
 					<th style="width:150px">购买总额</th>
 					<th style="width:150px">设备类型</th>
 					<th style="width:150px">国家代码</th>
-					<th style="width:150px">注册时间</th>
+					<th style="width:200px">注册时间</th>
 					<th style="width:150px">所处任务关卡</th>
 					<!-- <th style="width:150px">操作</th> -->
 				</tr>
@@ -61,7 +61,7 @@
 						<td><{$user_info.payAmount}></td>
 						<td><{$user_info.deviceModel}></td>
 						<td><{$user_info.countryCode}></td>
-						<td><{$user_info.registTime}></td>
+						<td><{$user_info.registTimeStr}></td>
 						<td><{$user_info.curTaskID}></td>
 
 						<!-- <td>

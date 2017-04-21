@@ -45,7 +45,7 @@ if ($search) {
 
         $begin_timestamp = $end_timestamp - 24 * 60 * 60;
         // 日期
-        $player_retained['date'] = Common::getDateStr($begin_timestamp);
+        $player_retained['date'] = DateUtils::getDateStr($begin_timestamp, true);
         $conditions = ['registTime' => ['$gte' => $begin_timestamp * 1000, '$lt' => $end_timestamp * 1000]];
         $registPlayerNum = count(Player::search($conditions));
 

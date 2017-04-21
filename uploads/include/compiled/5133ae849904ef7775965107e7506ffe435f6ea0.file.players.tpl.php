@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.15, created on 2017-04-14 14:29:48
+<?php /* Smarty version Smarty-3.1.15, created on 2017-04-21 18:01:54
          compiled from "/Library/WebServer/Documents/OSAdmin/uploads/include/template/panel/players.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:2317113158d8a9e0134207-05336888%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '5133ae849904ef7775965107e7506ffe435f6ea0' => 
     array (
       0 => '/Library/WebServer/Documents/OSAdmin/uploads/include/template/panel/players.tpl',
-      1 => 1492144382,
+      1 => 1492768912,
       2 => 'file',
     ),
   ),
@@ -85,7 +85,7 @@ $_smarty_tpl->tpl_vars['player_info']->_loop = true;
 					<tr>
 					<td><?php echo $_smarty_tpl->tpl_vars['player_info']->value['id'];?>
 </td>
-					<td><?php echo $_smarty_tpl->tpl_vars['player_info']->value['time'];?>
+					<td><?php echo $_smarty_tpl->tpl_vars['player_info']->value['registTimeStr'];?>
 </td>
 					<td>
 					<a href="player_modify.php?player_id=<?php echo $_smarty_tpl->tpl_vars['player_info']->value['id'];?>

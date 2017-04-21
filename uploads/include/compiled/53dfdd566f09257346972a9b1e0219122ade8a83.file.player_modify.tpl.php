@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.15, created on 2017-03-28 16:48:51
+<?php /* Smarty version Smarty-3.1.15, created on 2017-04-21 18:25:00
          compiled from "/Library/WebServer/Documents/OSAdmin/uploads/include/template/panel/player_modify.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:58481000558d900f358f4f8-71201825%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '53dfdd566f09257346972a9b1e0219122ade8a83' => 
     array (
       0 => '/Library/WebServer/Documents/OSAdmin/uploads/include/template/panel/player_modify.tpl',
-      1 => 1490690899,
+      1 => 1492770290,
       2 => 'file',
     ),
   ),
@@ -47,13 +47,25 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 
            <form id="tab" method="post" action="" autocomplete="off">
 				<label>ID<span class="label label-info">不可修改</span></label>
-				<input type="text" name="player_id" value="<?php echo $_smarty_tpl->tpl_vars['player']->value['id'];?>
+				<input type="text" name="id" value="<?php echo $_smarty_tpl->tpl_vars['player']->value['id'];?>
 " class="input-xlarge" readonly="true">
 				<label>注册时间<span class="label label-important" >不可修改</span></label>
-				<input type="text" name="player_time" value="<?php echo $_smarty_tpl->tpl_vars['player']->value['time'];?>
+				<input type="text" name="registTimeStr" value="<?php echo $_smarty_tpl->tpl_vars['player']->value['registTimeStr'];?>
 " class="input-xlarge" readonly="true">
+			    <label>所处任务关卡</label>
+			    <input type="text" name="curTaskID" value="<?php echo $_smarty_tpl->tpl_vars['player']->value['data']['key_task_data']['key_task_curtaskid'];?>
+" class="input-xlarge" required="true" >
 				<label>金币数</label>
-				<input type="text" name="player_coins" value="<?php echo $_smarty_tpl->tpl_vars['player']->value['data']['key_user_base_data']['userCoins'];?>
+			    <input type="text" name="userCoins" value="<?php echo $_smarty_tpl->tpl_vars['player']->value['data']['key_user_base_data']['userCoins'];?>
+" class="input-xlarge" required="true" >
+			    <label>累计付费金额</label>
+			    <input type="text" name="hadPay" value="<?php echo $_smarty_tpl->tpl_vars['player']->value['data']['key_iap_data']['hadPay'];?>
+" class="input-xlarge" required="true" >
+			    <label>最后登录时间</label>
+			    <input type="text" name="loginTime" value="<?php echo $_smarty_tpl->tpl_vars['player']->value['loginTimeStr'];?>
+" class="input-xlarge" readonly="true">
+			    <label>已开启老虎机</label>
+			    <input type="text" name="player_coins" value="<?php echo $_smarty_tpl->tpl_vars['player']->value['paySlotsStr'];?>
 " class="input-xlarge" required="true" >
 			<div class="btn-toolbar">
 				<button type="submit" class="btn btn-primary"><strong>提交</strong></button>

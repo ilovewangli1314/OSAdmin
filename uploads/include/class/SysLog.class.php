@@ -42,7 +42,7 @@ class SysLog extends Base{
 		$list = $db->select ( self::getTableName(), self::$columns, $condition);
 		if(!empty($list)){
 			foreach ($list as &$item){
-				$item['op_time']=Common::getDateTime($item['op_time']);
+				$item['op_time'] = DateUtils::getDateStr($item['op_time']);
 			}
 		}
 

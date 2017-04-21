@@ -94,8 +94,18 @@ class DateUtils
         return (DateUtils::getDayBeginTime($time1) == DateUtils::getDayBeginTime($time2));
     }
 
-    public static function getDateStr($time)
+    /**
+     * 得到日期的字符串
+     * @param null $time
+     * @param bool $onlyDay 是否只显示到天，不显示小时分钟秒
+     * @return string
+     */
+    public static function getDateStr($time = null, $onlyDay = false)
     {
-        return date("Y-m-d H:i:s", $time);
+        $format = 'Y-m-d H:i:s';
+        if ($onlyDay) {
+            $format = 'Y-m-d';
+        }
+        return (!is_numeric($time)) ? date ($format) : date($format, $time);
     }
 }

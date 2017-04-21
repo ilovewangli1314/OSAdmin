@@ -42,7 +42,7 @@
                 <{foreach name=player from=$player_infos item=player_info}>
 					<tr>
 					<td><{$player_info.id}></td>
-					<td><{$player_info.time}></td>
+					<td><{$player_info.registTimeStr}></td>
 					<td>
 					<a href="player_modify.php?player_id=<{$player_info.id}>" title= "修改" ><i class="icon-pencil"></i></a>
 					<a data-toggle="modal" href="#myModal" title= "删除" ><i class="icon-remove" href="players.php?page_no=<{$page_no}>&method=del&player_id=<{$player_info.id}>" ></i></a>

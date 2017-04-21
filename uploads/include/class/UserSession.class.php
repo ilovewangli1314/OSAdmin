@@ -57,7 +57,7 @@ class UserSession{
 			return;
 		}
 		
-		//¶ÁÈ¡¸ÃÓÃ»§ËùÊôÓÃ»§×é½«¸Ã×éµÄÈ¨ÏÞ±£´æÔÚ$_SESSIONÖÐ
+		//ï¿½ï¿½È¡ï¿½ï¿½ï¿½Ã»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ã»ï¿½ï¿½é½«ï¿½ï¿½ï¿½ï¿½ï¿½È¨ï¿½Þ±ï¿½ï¿½ï¿½ï¿½ï¿½$_SESSIONï¿½ï¿½
 		$user_group = UserGroup::getGroupById($user_info['user_group']);
 		$user_info['group_id']=$user_group['group_id'];
 		$user_info['user_role']=$user_group['group_role'];
@@ -66,7 +66,7 @@ class UserSession{
 		if(strpos($user_group['group_role'],$menu['menu_id'])){
 			$user_info['setting']=1;
 		}
-		$user_info['login_time']=Common::getDateTime($user_info['login_time']);
+		$user_info['login_time']=DateUtils::getDateStr($user_info['login_time']);
 		UserSession::setSessionInfo( $user_info);
 	}
 }
