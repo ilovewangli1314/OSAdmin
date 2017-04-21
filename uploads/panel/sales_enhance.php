@@ -184,7 +184,7 @@ if ($search) {
             // 新增付费用户数
             $sale_info['added_pay_users'] = $daily_record['addedPayUsers'];
             // 新增付费额
-            $sale_info['added_pay_amount'] = $daily_record['addedPayAmount'];
+            $sale_info['added_pay_amount'] = $daily_record['addedPayAmount'] . '$';
             // ARPU
             $sale_info['arpu'] = $daily_record['arpu'];
             // ARPPU

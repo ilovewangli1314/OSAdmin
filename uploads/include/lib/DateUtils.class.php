@@ -93,4 +93,9 @@ class DateUtils
     {
         return (DateUtils::getDayBeginTime($time1) == DateUtils::getDayBeginTime($time2));
     }
+
+    public static function getDateStr($time)
+    {
+        return date("Y-m-d H:i:s", $time);
+    }
 }

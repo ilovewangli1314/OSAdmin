@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.15, created on 2017-04-20 18:20:46
+<?php /* Smarty version Smarty-3.1.15, created on 2017-04-21 15:18:52
          compiled from "/Library/WebServer/Documents/OSAdmin/uploads/include/template/panel/sales_enhance.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:11645156158f880375d1698-16810165%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'ddfc2188117e7564fb793c698d6c30deff446541' => 
     array (
       0 => '/Library/WebServer/Documents/OSAdmin/uploads/include/template/panel/sales_enhance.tpl',
-      1 => 1492683636,
+      1 => 1492759112,
       2 => 'file',
     ),
   ),
@@ -122,8 +122,8 @@ $_smarty_tpl->tpl_vars['sale_info']->_loop = true;
 </td>
 
 						<td>
-							<a data-toggle="modal" href="sale_detail.php?sale_id=<?php echo $_smarty_tpl->tpl_vars['sale_info']->value['day_time'];?>
-" title= "查看" ><i class="icon-eye-open" href="sale_detail.php?sale_id=<?php echo $_smarty_tpl->tpl_vars['sale_info']->value['day_time'];?>
+							<a data-toggle="modal" href="sale_detail.php?day_time=<?php echo $_smarty_tpl->tpl_vars['sale_info']->value['day_time'];?>
+" title= "查看" ><i class="icon-eye-open" href="sale_detail.php?day_time=<?php echo $_smarty_tpl->tpl_vars['sale_info']->value['day_time'];?>
 " ></i></a>
 						</td>
 					</tr>
