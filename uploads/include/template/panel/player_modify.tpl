@@ -7,7 +7,7 @@
 <{$osadmin_quick_note}>
 <div class="well">
     <ul class="nav nav-tabs">
-      <li class="active"><a href="#home" data-toggle="tab">请修改账号资料</a></li>
+      <li class="active"><a href="#home" data-toggle="tab">修改玩家数据</a></li>
     </ul>	
 	
 	<div id="myTabContent" class="tab-content">
