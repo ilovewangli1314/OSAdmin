@@ -113,13 +113,13 @@ class Player extends Base{
     public static function searchByID($player_id = null, $start = null, $page_size = null)
     {
         $where = $player_id ? ['id' => (int)$player_id] : [];
-        Player::search($where, $start, $page_size);
+        return Player::search($where, $start, $page_size);
     }
 
     public static function searchByDeviceID($device_id = null, $start = null, $page_size = null)
     {
         $where = $device_id ? ['deviceID' => $device_id] : [];
-        Player::search($where, $start, $page_size);
+        return Player::search($where, $start, $page_size);
     }
 
     public static function updatePlayer($player_id, $player_data)
