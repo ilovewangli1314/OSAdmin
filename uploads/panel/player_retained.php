@@ -40,10 +40,10 @@ if ($search) {
     $end = $end > $row_count ? $row_count : $end;
 
     $player_retaineds = [];
-    for ($i = $start; $i < $end; $i++) {
+    for ($i = $start + 1; $i <= $end; $i++) {
         $player_retained = [];
 
-        $timeRange = DateUtils::getTimeRange(DATE_UNIT_DAY, -($i + 1));
+        $timeRange = DateUtils::getTimeRange(DATE_UNIT_DAY, -$i);
         $begin_timestamp = $timeRange['minTime'];
         $end_timestamp = $timeRange['maxTime'];
 
@@ -52,12 +52,12 @@ if ($search) {
         $conditions = ['registTime' => ['$gte' => $begin_timestamp * 1000, '$lt' => $end_timestamp * 1000]];
         $registPlayerNum = count(Player::search($conditions));
 
-        for ($j = 0; $j <= $i; $j++) {
-            $timeRange = DateUtils::getTimeRange(DATE_UNIT_DAY, $j + 1, $begin_timestamp);
+        for ($j = 1; $j <= $i; $j++) {
+            $timeRange = DateUtils::getTimeRange(DATE_UNIT_DAY, $j, $begin_timestamp);
             $retainedConditions = array_merge($conditions, ['loginTime' => ['$gte' => $timeRange['minTime'] * 1000]]);
             $retainedPlayerNum = count(Player::search($retainedConditions));
 
-            $player_retained['day_' . ($j + 1)] = number_format(Common::safeDivide($retainedPlayerNum, $registPlayerNum), 4) * 100 . "%";
+            $player_retained['day_' . $j] = number_format(Common::safeDivide($retainedPlayerNum, $registPlayerNum), 4) * 100 . "%";
         }
 
         array_push($player_retaineds, $player_retained);
