@@ -15,7 +15,7 @@ if ($method == 'del' && !empty ($player_id)) {
 }
 
 //START 数据库查询及分页数据
-$page_size = PAGE_SIZE;
+$page_size = 30;
 $page_no=$page_no<1?1:$page_no;
 
 if ($search) {
@@ -28,52 +28,43 @@ if ($search) {
 
 //    $user_infos = User::search($user_group,$user_name,$start , $page_size);
 } else {
-    // 设置项目的开始时间
-    $init_timestamp = strtotime('2017-04-15 00:00:00');
-    $days = 99999;
-//    $offsetDays = [-1, -2, -3, -4, -5, -6, -7];
+    // 得到距离项目开始时的总天数
+    $totalDays = DateUtils::dateDifference(null, STAT_BEGIN_TIME);
 
-    $begin_timestamp = 0;
-    $end_time = new DateTime();
-    $end_time->setTime(0, 0, 0);
-    $end_timestamp = $end_time->getTimestamp();
+    $row_count = $totalDays;
+    $total_page = $row_count % $page_size == 0 ? $row_count / $page_size : ceil($row_count / $page_size);
+    $total_page = $total_page < 1 ? 1 : $total_page;
+    $page_no = $page_no > ($total_page) ? ($total_page) : $page_no;
+    $start = ($page_no - 1) * $page_size;
+    $end = $page_no * $page_size;
+    $end = $end > $row_count ? $row_count : $end;
 
     $player_retaineds = [];
-    $player_retained = null;
-    for ($i = 1; $i <= $days; $i++) {
+    for ($i = $start; $i < $end; $i++) {
         $player_retained = [];
 
-        $begin_timestamp = $end_timestamp - 24 * 60 * 60;
+        $timeRange = DateUtils::getTimeRange(DATE_UNIT_DAY, -($i + 1));
+        $begin_timestamp = $timeRange['minTime'];
+        $end_timestamp = $timeRange['maxTime'];
+
         // 日期
         $player_retained['date'] = DateUtils::getDateStr($begin_timestamp, true);
         $conditions = ['registTime' => ['$gte' => $begin_timestamp * 1000, '$lt' => $end_timestamp * 1000]];
         $registPlayerNum = count(Player::search($conditions));
 
-        for ($j = 1; $j <= $i; $j++) {
+        for ($j = 0; $j <= $i; $j++) {
             $timeRange = DateUtils::getTimeRange(DATE_UNIT_DAY, $j, $begin_timestamp);
             $retainedConditions = array_merge($conditions, ['loginTime' => ['$gte' => $timeRange['minTime'] * 1000]]);
             $retainedPlayerNum = count(Player::search($retainedConditions));
 
-            $player_retained['day_' . $j] = number_format(Common::safeDivide($retainedPlayerNum, $registPlayerNum), 4) * 100 . "%";
+            $player_retained['day_' . ($j + 1)] = number_format(Common::safeDivide($retainedPlayerNum, $registPlayerNum), 4) * 100 . "%";
         }
 
-        $end_timestamp = $begin_timestamp;
         array_push($player_retaineds, $player_retained);
-
-        // 统计到项目上线的时间为止
-        if ($begin_timestamp <= $init_timestamp) {
-            break;
-        }
     }
-
-    $row_count = count($player_retaineds);
-    $total_page = $row_count % $page_size == 0 ? $row_count / $page_size : ceil($row_count / $page_size);
-    $total_page = $total_page < 1 ? 1 : $total_page;
-    $page_no = $page_no > ($total_page) ? ($total_page) : $page_no;
-    $start = ($page_no - 1) * $page_size;
 }
 
-$page_html = Pagination::showPager("player_retaineds.php?player_id=$player_id&search=$search", $page_no, $page_size, $row_count);
+$page_html = Pagination::showPager("player_retained.php?player_id=$player_id&search=$search", $page_no, $page_size, $row_count);
 
 //追加操作的确认层
 $confirm_html = OSAdmin::renderJsConfirm("icon-pause,icon-play,icon-remove");
