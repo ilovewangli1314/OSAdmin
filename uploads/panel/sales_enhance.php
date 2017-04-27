@@ -6,7 +6,7 @@ extract ( $_REQUEST, EXTR_IF_EXISTS );
 //DateUtils::getTimeRange(DATE_UNIT_MONTH, 0);
 
 //START 数据库查询及分页数据
-$page_size = PAGE_SIZE;
+$page_size = 30;
 $page_no=$page_no<1?1:$page_no;
 
 if ($search) {
@@ -19,13 +19,16 @@ if ($search) {
 
 //    $user_infos = User::search($user_group,$user_name,$start , $page_size);
 } else {
-    // 统计当天及前七天的销售数据
-    $init_timestamp = strtotime(STAT_BEGIN_TIME);
-    $days = 99999;
-    $begin_timestamp = 0;
-    $end_time = new DateTime();
-    $end_time->setTime(0, 0, 0);
-    $end_timestamp = $end_time->getTimestamp() + 24 * 60 * 60;
+    // 得到距离项目开始时的总天数
+    $totalDays = DateUtils::dateDifference(null, STAT_BEGIN_TIME);
+
+    $row_count = $totalDays + 1;
+    $total_page = $row_count % $page_size == 0 ? $row_count / $page_size : ceil($row_count / $page_size);
+    $total_page = $total_page < 1 ? 1 : $total_page;
+    $page_no = $page_no > ($total_page) ? ($total_page) : $page_no;
+    $start = ($page_no - 1) * $page_size;
+    $end = $page_no * $page_size;
+    $end = $end > $row_count ? $row_count : $end;
 
     $sale_infos = [];
     $sale_info = null;
@@ -36,23 +39,18 @@ if ($search) {
     $addedPayUsers = 0;
     $nextDayRetained = 0; // 次日留存
 //    $day7Retained = 0; // 7日留存
-    for ($i = 0; $i < $days; $i++) {
+    for ($i = $start; $i < $end; $i++) {
+        $timeRange = DateUtils::getTimeRange(DATE_UNIT_DAY, -$i);
+        $begin_timestamp = $timeRange['minTime'];
+        $end_timestamp = $timeRange['maxTime'];
+
         $addedPayAmount = 0;
         $payNum = 0; // 付费次数
         $payAmount = 0;
 
         $sale_info = [];
-
-        $begin_timestamp = $end_timestamp - 24 * 60 * 60;
         // 日期
         $sale_info['date'] = DateUtils::getDateStr($begin_timestamp, true);
-//        Common::print_r_n($begin_timestamp);
-
-//        // 付费累计金额
-//        $sale_info['purchase_amount'] = 0;
-//        foreach ($purchase_records as $value) {
-//            $sale_info['purchase_amount'] += $value['goodsPrice'] * $value['payNum'];
-//        }
 
         // 如果是当天则实时查询玩家列表生成活跃用户和新增用户
         if ($i == 0) {
@@ -86,7 +84,6 @@ if ($search) {
                 $user = Player::search(['deviceID' => $value['userDeviceID']])[0];
                 if (DateUtils::checkIsSameDay($user['loginTime'], $user['registTime'])) {
                     $addedPayAmount += $addedPay;
-
                     if ($isAddedDevice) {
                         $addedPayUsers++;
                     }
@@ -99,7 +96,6 @@ if ($search) {
             // 实时计算次日留存
             $timeRange = DateUtils::getTimeRange(DATE_UNIT_DAY, -1, null);
 //            echo '<br>minTime:<br>' . date("Y-m-d H:i:s", $timeRange['minTime']);
-//            echo '<br>maxTime:<br>' . date("Y-m-d H:i:s", $timeRange['maxTime']);
             $conditions = ['registTime' => ['$gte' => $timeRange['minTime'] * 1000, '$lt' => $timeRange['maxTime'] * 1000]];
             $lastPlayers = Player::search($conditions);
             $retainedPlayer = 0;
@@ -121,8 +117,6 @@ if ($search) {
             $day7Retained = 0;
         }
 
-//        $conditions = ['dayTime' => ['$gte' => $begin_timestamp * 1000, '$lt' => $end_timestamp * 1000]];
-//        $daily_record = DailyRecord::search($conditions)[0];
         $daily_record = [];
         if ($i == 0) {
             // 付费信息的时间
@@ -195,22 +189,8 @@ if ($search) {
             $sale_info['added_pay_rate'] = $daily_record['addedPayRate'];
         }
 
-        $end_timestamp = $begin_timestamp;
-
-        $sale_infos[$i] = $sale_info;
-
-        // 统计到项目上线的时间为止
-        if ($begin_timestamp <= $init_timestamp) {
-            break;
-        }
+        array_push($sale_infos, $sale_info);
     }
-
-    $row_count = count($sale_infos);
-    $total_page = $row_count % $page_size == 0 ? $row_count / $page_size : ceil($row_count / $page_size);
-    $total_page = $total_page < 1 ? 1 : $total_page;
-    $page_no = $page_no > ($total_page) ? ($total_page) : $page_no;
-    $start = ($page_no - 1) * $page_size;
-
 //    Common::print_r_n(count($sale_infos));
 }
 

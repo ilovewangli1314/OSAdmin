@@ -104,7 +104,7 @@ class Common {
 	public static function isGet() {
 		return $_SERVER ['REQUEST_METHOD'] === 'GET' ? TRUE : FALSE;
 	}
-	
+
 	public static function getIp() {
 		if (getenv ( "HTTP_CLIENT_IP" ) && strcasecmp ( getenv ( "HTTP_CLIENT_IP" ), "unknown" )) {
 			$ip = getenv ( "HTTP_CLIENT_IP" );
@@ -119,6 +119,10 @@ class Common {
 		}
 		return ($ip);
 	}
+
+    public static function getDateStr($time = null) {
+        return (!is_numeric($time)) ? date ( 'Y-m-d' ) : date( 'Y-m-d', $time);
+    }
 
 	public static function getTime() {
 		return strtotime(date( 'Y-m-d H:i:s' ));
