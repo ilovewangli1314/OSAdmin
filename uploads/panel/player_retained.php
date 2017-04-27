@@ -53,7 +53,7 @@ if ($search) {
         $registPlayerNum = count(Player::search($conditions));
 
         for ($j = 0; $j <= $i; $j++) {
-            $timeRange = DateUtils::getTimeRange(DATE_UNIT_DAY, $j, $begin_timestamp);
+            $timeRange = DateUtils::getTimeRange(DATE_UNIT_DAY, $j + 1, $begin_timestamp);
             $retainedConditions = array_merge($conditions, ['loginTime' => ['$gte' => $timeRange['minTime'] * 1000]]);
             $retainedPlayerNum = count(Player::search($retainedConditions));
 
