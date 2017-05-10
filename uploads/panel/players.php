@@ -28,7 +28,7 @@ if ($search) {
 
 //    $user_infos = User::search($user_group,$user_name,$start , $page_size);
 } else {
-    $row_count = count(Player::search());
+    $row_count = Player::count();
     $total_page = $row_count % $page_size == 0 ? $row_count / $page_size : ceil($row_count / $page_size);
     $total_page = $total_page < 1 ? 1 : $total_page;
     $page_no = $page_no > ($total_page) ? ($total_page) : $page_no;
