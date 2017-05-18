@@ -74,7 +74,7 @@ if ($search) {
             $purchase_records = PurchaseRecord::search($conditions, null, null);
             $payNum = count($purchase_records);
             foreach ($purchase_records as $value) {
-                $payAmount += (explode("$", $value['productPrice'])[1] * $value['purchaseNum']);
+                $payAmount += Common::getProductPrice($value['productName']) * $value['purchaseNum'];
             }
             $purchase_records = Common::unique_multidim_array($purchase_records, 'userDeviceID');
             foreach ($purchase_records as $value) {
