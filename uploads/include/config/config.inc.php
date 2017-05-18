@@ -145,7 +145,7 @@ $SALE_PRODUCT_INFOS = array(
     'petfood25' => array(
         'price' => 24.99,
     ),
-    'wheelluxurious' => array(
+    'spinWheel' => array(
         'price' => 2.99,
     )
 );
