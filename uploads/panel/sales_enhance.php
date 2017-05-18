@@ -72,7 +72,7 @@ if ($search) {
             // 标示是否新增的设备用于计算玩家数
             $isAddedDevice = false;
             foreach ($purchase_records as $value) {
-                $addedPay = (explode("$", $value['productPrice'])[1] * $value['purchaseNum']);
+                $addedPay = Common::getProductPrice($value['productName']) * $value['purchaseNum'];
                 $payAmount += $addedPay;
 
                 $isAddedDevice = (array_search($value['userDeviceID'], $userDeviceIDs) === false);

@@ -257,4 +257,15 @@ class Common {
             return $srcNum / $targetNum;
         }
     }
+
+    /**
+     * 根据产品名称获得产品的价格(单位美元)
+     * @param $productName
+     * @return mixed
+     */
+    public static function getProductPrice($productName)
+    {
+        global $SALE_PRODUCT_INFOS;
+        return $SALE_PRODUCT_INFOS[$productName]['price'];
+    }
 }

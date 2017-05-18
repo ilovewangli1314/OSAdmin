@@ -13,7 +13,7 @@ $purchase_records = PurchaseRecord::search($conditions, null, null);
 $isAddedProduct = false;
 foreach ($purchase_records as $value) {
     $isAddedProduct = (array_search($value['productName'], array_column($product_infos, 'productName')) === false);
-    $addedPay = (explode("$", $value['productPrice'])[1] * $value['purchaseNum']);
+    $addedPay = Common::getProductPrice($value['productName']) * $value['purchaseNum'];
     if ($isAddedProduct) {
         $product_info = ['productName' => $value['productName'], 'purchaseNum' => $value['purchaseNum'], 'payAmount' => $addedPay];
         $product_infos[$value['productName']] = $product_info;
@@ -32,7 +32,7 @@ $user_infos = [];
 $isAddedUser = false;
 foreach ($purchase_records as $value) {
     $isAddedProduct = (array_search($value['userDeviceID'], array_column($user_infos, 'userDeviceID')) === false);
-    $addedPay = (explode("$", $value['productPrice'])[1] * $value['purchaseNum']);
+    $addedPay = Common::getProductPrice($value['productName']) * $value['purchaseNum'];
     if ($isAddedProduct) {
         $user_info = ['userDeviceID' => $value['userDeviceID'], 'userID' => $value['userID'], 'purchaseNum' => $value['purchaseNum'], 'payAmount' => $addedPay];
         $user_info['deviceModel'] = $value['userDeviceInfo']['deviceModel'];

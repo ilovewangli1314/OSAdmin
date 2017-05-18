@@ -91,3 +91,61 @@ $OSADMIN_CLASS_FOR_LOG = array(
 	'GroupRole' => '权限',
 	'QuickNote' => 'QuickNote',
 );
+
+// 销售产品的信息
+$SALE_PRODUCT_INFOS = array(
+    'coins1' => array(
+        'price' => 0.99,
+    ),
+    'coins2' => array(
+        'price' => 1.99,
+    ),
+    'coins3' => array(
+        'price' => 2.99,
+    ),
+    'coins5' => array(
+        'price' => 4.99,
+    ),
+    'coins8' => array(
+        'price' => 7.99,
+    ),
+    'coins10' => array(
+        'price' => 9.99,
+    ),
+    'coins15' => array(
+        'price' => 14.99,
+    ),
+    'coins20' => array(
+        'price' => 19.99,
+    ),
+    'coins30' => array(
+        'price' => 29.99,
+    ),
+    'coins40' => array(
+        'price' => 39.99,
+    ),
+    'coins50' => array(
+        'price' => 49.99,
+    ),
+    'coins60' => array(
+        'price' => 59.99,
+    ),
+    'coins80' => array(
+        'price' => 79.99,
+    ),
+    'coins100' => array(
+        'price' => 99.99,
+    ),
+    'petfood4' => array(
+        'price' => 3.99,
+    ),
+    'petfood15' => array(
+        'price' => 14.99,
+    ),
+    'petfood25' => array(
+        'price' => 24.99,
+    ),
+    'wheelluxurious' => array(
+        'price' => 2.99,
+    )
+);
