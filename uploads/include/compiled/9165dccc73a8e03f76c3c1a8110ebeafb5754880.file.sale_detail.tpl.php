@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.15, created on 2017-04-21 17:58:57
+<?php /* Smarty version Smarty-3.1.15, created on 2017-06-07 18:52:06
          compiled from "/Library/WebServer/Documents/OSAdmin/uploads/include/template/panel/sale_detail.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:152418817558db7d2e9ae368-81717431%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '9165dccc73a8e03f76c3c1a8110ebeafb5754880' => 
     array (
       0 => '/Library/WebServer/Documents/OSAdmin/uploads/include/template/panel/sale_detail.tpl',
-      1 => 1492768665,
+      1 => 1496832712,
       2 => 'file',
     ),
   ),
@@ -49,6 +49,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 				<thead>
 				<tr>
 					<th style="width:80px">名称</th>
+					<th style="width:150px">购买人数</th>
 					<th style="width:150px">购买数量</th>
 					<th style="width:150px">购买总额</th>
 					<!-- <th style="width:150px">操作</th> -->
@@ -62,6 +63,8 @@ $_smarty_tpl->tpl_vars['product_info']->_loop = true;
 ?>
 					<tr>
 						<td><?php echo $_smarty_tpl->tpl_vars['product_info']->value['productName'];?>
+</td>
+						<td><?php echo $_smarty_tpl->tpl_vars['product_info']->value['purchaseUsers'];?>
 </td>
 						<td><?php echo $_smarty_tpl->tpl_vars['product_info']->value['purchaseNum'];?>
 </td>
@@ -92,7 +95,7 @@ $_smarty_tpl->tpl_vars['product_info']->_loop = true;
 					<th style="width:150px">购买总额</th>
 					<th style="width:150px">设备类型</th>
 					<th style="width:150px">国家代码</th>
-					<th style="width:150px">注册时间</th>
+					<th style="width:200px">注册时间</th>
 					<th style="width:150px">所处任务关卡</th>
 					<!-- <th style="width:150px">操作</th> -->
 				</tr>

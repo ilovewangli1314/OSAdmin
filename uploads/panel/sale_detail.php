@@ -9,9 +9,10 @@ Common::checkParam($day_time);
 $product_infos = [];
 $conditions = ['purchaseTime' => ['$gte' => $day_time * 1000, '$lt' => ($day_time + 60 * 60 * 24) * 1000]];
 $purchase_records = PurchaseRecord::search($conditions, null, null);
-// 标示是否新增的产品类型用于计算每种产品的信息
-$isAddedProduct = false;
+
+$userPayInfo = []; // 用户购买各种产品的信息
 foreach ($purchase_records as $value) {
+    // 标示是否新增的产品类型用于计算每种产品的信息
     $isAddedProduct = (array_search($value['productName'], array_column($product_infos, 'productName')) === false);
     $addedPay = Common::getProductPrice($value['productName']) * $value['purchaseNum'];
     if ($isAddedProduct) {
@@ -22,14 +23,25 @@ foreach ($purchase_records as $value) {
         $tmp_info['purchaseNum'] += $value['purchaseNum'];
         $tmp_info['payAmount'] += $addedPay;
     }
+
+    $productPays = &$userPayInfo[$value['productName']];
+    if ($productPays) {
+        if (array_search($value['userDeviceID'], $productPays) === false) {
+            array_push($productPays, $value['userDeviceID']);
+        }
+    } else {
+        $productPays = [];
+    }
+}
+// 统计每种产品的购买人数
+foreach ($userPayInfo as $key => $value) {
+    $product_infos[$key]['purchaseUsers'] = count(array_unique($value));
 }
 // 根据产品销售总额降序排序
 $product_infos = Common::array_sort($product_infos, 'payAmount', SORT_DESC);
 
 // 计算玩家排行
 $user_infos = [];
-// 标示是否新增的玩家用于计算每个玩家的信息
-$isAddedUser = false;
 foreach ($purchase_records as $value) {
     $isAddedProduct = (array_search($value['userDeviceID'], array_column($user_infos, 'userDeviceID')) === false);
     $addedPay = Common::getProductPrice($value['productName']) * $value['purchaseNum'];
