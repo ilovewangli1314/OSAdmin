@@ -30,7 +30,7 @@ foreach ($purchase_records as $value) {
             array_push($productPays, $value['userDeviceID']);
         }
     } else {
-        $productPays = [];
+        $userPayInfo[$value['productName']] = [];
     }
 }
 // 统计每种产品的购买人数
