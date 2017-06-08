@@ -25,12 +25,12 @@ foreach ($purchase_records as $value) {
     }
 
     $productPays = &$userPayInfo[$value['productName']];
-    if ($productPays) {
-        if (array_search($value['userDeviceID'], $productPays) === false) {
-            array_push($productPays, $value['userDeviceID']);
-        }
-    } else {
-        $userPayInfo[$value['productName']] = [];
+    if (!$productPays) {
+        $productPays = [];
+        $userPayInfo[$value['productName']] = $productPays;
+    }
+    if (array_search($value['userDeviceID'], $productPays) === false) {
+        array_push($productPays, $value['userDeviceID']);
     }
 }
 // 统计每种产品的购买人数
