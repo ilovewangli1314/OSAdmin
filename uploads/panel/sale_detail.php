@@ -32,13 +32,13 @@ foreach ($tempPayInfos as $key => $value) {
         $timeRange = $key . "Days";
     }
 
-    foreach ($value as $key => $value) {
+    foreach ($value as $subKey => $subValue) {
         $info = [];
         $info['idx'] = $key;
         $info['timeRange'] = $timeRange;
-        $info['productName'] = $key;
-        $info['productPrice'] = Common::getProductPrice($key);
-        $info['purchaseUsers'] = $value;
+        $info['productName'] = $subKey;
+        $info['productPrice'] = Common::getProductPrice($subKey);
+        $info['purchaseUsers'] = $subValue;
         array_push($firstPayInfos, $info);
     }
 }
