@@ -29,7 +29,7 @@ foreach ($tempPayInfos as $key => $value) {
     } else if ($key > 7) {
         $timeRange = ">7Days";
     } else {
-        $timeRange = $key + "Days";
+        $timeRange = $key . "Days";
     }
 
     foreach ($value as $key => $value) {

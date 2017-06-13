@@ -8,7 +8,7 @@
 <div class="well">
 	<div class="block">
 		<a href="#page-stats" class="block-heading" data-toggle="collapse">首次充值列表</a>
-		<div id="page-stats" class="block-body collapse in">
+		<div id="page-stats" class="block-body collapse out">
 			<table class="table table-striped">
 				<thead>
 				<tr>
