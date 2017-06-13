@@ -64,17 +64,21 @@ class PurchaseRecord extends Base{
 //		return array ();
 //	}
 
-    public static function search($where = [], $start = null, $page_size = null)
+    public static function search($where = null, $start = null, $page_size = null)
     {
         $db = self::__instance();
         $list = $db->select(self::getTableName(), self::$columns, $where, $start, $page_size);
         if (!empty($list)) {
-//            foreach ($list as &$item) {
-//                // 时间单位需要从微妙转换成秒
+            foreach ($list as &$item) {
 //                if ($item->time) {
 //                    $item->time = Common::getDateTime($item->time / 1000);
 //                }
-//            }
+
+                // 时间单位需要从微妙转换成秒
+                if ($item['purchaseTime']) {
+                    $item['purchaseTime'] = $item['purchaseTime'] / 1000;
+                }
+            }
 
             return $list;
         }

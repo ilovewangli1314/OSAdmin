@@ -5,6 +5,42 @@ extract($_REQUEST, EXTR_IF_EXISTS);
 
 Common::checkParam($day_time);
 
+// 计算首次充值金额及时长分布
+$purchase_records = PurchaseRecord::search();
+$purchase_records = Common::array_sort($purchase_records, 'purchaseTime', SORT_ASC);
+$purchase_records = Common::unique_multidim_array($purchase_records, 'userDeviceID', true);
+$tempPayInfos = [];
+for ($i = 0; $i < 9; $i++) {
+    array_push($tempPayInfos, []);
+}
+foreach ($purchase_records as $key => $value) {
+    $user = Player::searchByDeviceID($value['userDeviceID'])[0];
+    $idx = floor(($value['purchaseTime'] - $user['registTime']) / (60 * 60 * 24));
+    $idx = max(0, min(8, $idx));
+    Common::safeAddNumByKey($tempPayInfos[$idx], $value['productName'], 1);
+}
+$firstPayInfos = [];
+foreach ($tempPayInfos as $key => $value) {
+    $timeRange = "";
+    if ($key < 1) {
+        $timeRange = "<1Day";
+    } else if ($key == 1) {
+        $timeRange = "1Day";
+    } else if ($key > 7) {
+        $timeRange = ">7Days";
+    } else {
+        $timeRange = $key + "Days";
+    }
+
+    foreach ($value as $key => $value) {
+        $info = [];
+        $info['timeRange'] = $timeRange;
+        $info['productName'] = $key;
+        $info['purchaseUsers'] = $value;
+        array_push($firstPayInfos, $info);
+    }
+}
+
 // 计算产品销售排行
 $product_infos = [];
 $conditions = ['purchaseTime' => ['$gte' => $day_time * 1000, '$lt' => ($day_time + 60 * 60 * 24) * 1000]];
@@ -63,6 +99,7 @@ foreach ($purchase_records as $value) {
 // 根据玩家购买总额降序排序
 $user_infos = Common::array_sort($user_infos, 'payAmount', SORT_DESC);
 
+Template::assign ('first_pay_infos', $firstPayInfos);
 Template::assign ('product_infos', $product_infos);
 Template::assign ('user_infos', $user_infos);
 Template::assign ( '_GET', $_GET );

@@ -184,19 +184,29 @@ class Common {
      * 根据数组中的某个key去重
      * @param $array
      * @param $key
+     * @param $addSameNum 返回结果中是否需要添加相同value数量的字段
      * @return array
      */
-    public static function unique_multidim_array($array, $key) {
+    public static function unique_multidim_array($array, $key, $addSameNum = false) {
         $temp_array = array();
         $i = 0;
         $key_array = array();
 
         foreach($array as $val) {
+            $j = array_search($val[$key], array_column($temp_array, $key));
+
             if (!in_array($val[$key], $key_array)) {
                 $key_array[$i] = $val[$key];
                 $temp_array[$i] = $val;
+
+                if ($addSameNum) {
+                    $temp_array[$j]['sameNum'] = 1;
+                }
+
+                $i++;
+            } else if ($addSameNum) {
+                $temp_array[$j]['sameNum']++;
             }
-            $i++;
         }
         return $temp_array;
     }
@@ -255,6 +265,21 @@ class Common {
             return 0;
         } else {
             return $srcNum / $targetNum;
+        }
+    }
+
+    /**
+     * 安全的给数组的某个item增加数量
+     * @param $array
+     * @param $key
+     * @param $addedNum
+     */
+    public static function safeAddNumByKey(&$array, $key, $addedNum)
+    {
+        if ($array[$key]) {
+            $array[$key] += $addedNum;
+        } else {
+            $array[$key] = $addedNum;
         }
     }
 

@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.15, created on 2017-06-07 18:52:06
+<?php /* Smarty version Smarty-3.1.15, created on 2017-06-13 16:21:34
          compiled from "/Library/WebServer/Documents/OSAdmin/uploads/include/template/panel/sale_detail.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:152418817558db7d2e9ae368-81717431%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '9165dccc73a8e03f76c3c1a8110ebeafb5754880' => 
     array (
       0 => '/Library/WebServer/Documents/OSAdmin/uploads/include/template/panel/sale_detail.tpl',
-      1 => 1496832712,
+      1 => 1497342084,
       2 => 'file',
     ),
   ),
@@ -21,6 +21,8 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   array (
     'osadmin_action_alert' => 0,
     'osadmin_quick_note' => 0,
+    'first_pay_infos' => 0,
+    'first_pay_info' => 0,
     'product_infos' => 0,
     'product_info' => 0,
     'sale_info' => 0,
@@ -42,6 +44,37 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 <?php echo $_smarty_tpl->tpl_vars['osadmin_quick_note']->value;?>
 
 <div class="well">
+	<div class="block">
+		<a href="#page-stats" class="block-heading" data-toggle="collapse">首次充值列表</a>
+		<div id="page-stats" class="block-body collapse in">
+			<table class="table table-striped">
+				<thead>
+				<tr>
+					<th style="width:80px">时间</th>
+					<th style="width:150px">商品名称</th>
+					<th style="width:150px">购买人数</th>
+				</tr>
+				</thead>
+				<tbody>
+				<?php  $_smarty_tpl->tpl_vars['first_pay_info'] = new Smarty_Variable; $_smarty_tpl->tpl_vars['first_pay_info']->_loop = false;
+ $_from = $_smarty_tpl->tpl_vars['first_pay_infos']->value; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array');}
+foreach ($_from as $_smarty_tpl->tpl_vars['first_pay_info']->key => $_smarty_tpl->tpl_vars['first_pay_info']->value) {
+$_smarty_tpl->tpl_vars['first_pay_info']->_loop = true;
+?>
+					<tr>
+						<td><?php echo $_smarty_tpl->tpl_vars['first_pay_info']->value['timeRange'];?>
+</td>
+						<td><?php echo $_smarty_tpl->tpl_vars['first_pay_info']->value['productName'];?>
+</td>
+						<td><?php echo $_smarty_tpl->tpl_vars['first_pay_info']->value['purchaseUsers'];?>
+</td>
+					</tr>
+					<?php } ?>
+				</tbody>
+			</table>
+		</div>
+	</div>
+
 	<div class="block">
 		<a href="#page-stats" class="block-heading" data-toggle="collapse">商品列表</a>
 		<div id="page-stats" class="block-body collapse in">

@@ -7,6 +7,30 @@
 <{$osadmin_quick_note}>
 <div class="well">
 	<div class="block">
+		<a href="#page-stats" class="block-heading" data-toggle="collapse">首次充值列表</a>
+		<div id="page-stats" class="block-body collapse in">
+			<table class="table table-striped">
+				<thead>
+				<tr>
+					<th style="width:80px">时间</th>
+					<th style="width:150px">商品名称</th>
+					<th style="width:150px">购买人数</th>
+				</tr>
+				</thead>
+				<tbody>
+				<{foreach name=first_pay_info from=$first_pay_infos item=first_pay_info}>
+					<tr>
+						<td><{$first_pay_info.timeRange}></td>
+						<td><{$first_pay_info.productName}></td>
+						<td><{$first_pay_info.purchaseUsers}></td>
+					</tr>
+					<{/foreach}>
+				</tbody>
+			</table>
+		</div>
+	</div>
+
+	<div class="block">
 		<a href="#page-stats" class="block-heading" data-toggle="collapse">商品列表</a>
 		<div id="page-stats" class="block-body collapse in">
 			<table class="table table-striped">
