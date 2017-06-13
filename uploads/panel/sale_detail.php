@@ -41,6 +41,8 @@ foreach ($tempPayInfos as $key => $value) {
         array_push($firstPayInfos, $info);
     }
 }
+// 根据产品价格升序排序
+$product_infos = Common::array_sort($firstPayInfos, 'productPrice', SORT_ASC);
 
 // 计算产品销售排行
 $product_infos = [];
