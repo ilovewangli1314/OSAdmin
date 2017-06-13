@@ -14,6 +14,7 @@
 				<tr>
 					<th style="width:80px">时间</th>
 					<th style="width:150px">商品名称</th>
+					<th style="width:150px">商品价格</th>
 					<th style="width:150px">购买人数</th>
 				</tr>
 				</thead>
@@ -22,6 +23,7 @@
 					<tr>
 						<td><{$first_pay_info.timeRange}></td>
 						<td><{$first_pay_info.productName}></td>
+						<td><{$first_pay_info.productPrice + '$'}></td>
 						<td><{$first_pay_info.purchaseUsers}></td>
 					</tr>
 					<{/foreach}>

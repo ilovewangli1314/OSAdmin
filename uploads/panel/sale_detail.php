@@ -36,6 +36,7 @@ foreach ($tempPayInfos as $key => $value) {
         $info = [];
         $info['timeRange'] = $timeRange;
         $info['productName'] = $key;
+        $info['productPrice'] = Common::getProductPrice($key);
         $info['purchaseUsers'] = $value;
         array_push($firstPayInfos, $info);
     }
