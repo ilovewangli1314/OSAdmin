@@ -39,6 +39,7 @@
 				<thead>
 				<tr>
 					<th style="width:80px">名称</th>
+					<th style="width:80px">价格</th>
 					<th style="width:150px">购买人数</th>
 					<th style="width:150px">购买数量</th>
 					<th style="width:150px">购买总额</th>
@@ -49,6 +50,7 @@
 				<{foreach name=product_info from=$product_infos item=product_info}>
 					<tr>
 						<td><{$product_info.productName}></td>
+						<td><{$product_info.productPrice}></td>
 						<td><{$product_info.purchaseUsers}></td>
 						<td><{$product_info.purchaseNum}></td>
 						<td><{$product_info.payAmount}></td>

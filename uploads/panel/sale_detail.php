@@ -34,6 +34,7 @@ foreach ($tempPayInfos as $key => $value) {
 
     foreach ($value as $key => $value) {
         $info = [];
+        $info['idx'] = $key;
         $info['timeRange'] = $timeRange;
         $info['productName'] = $key;
         $info['productPrice'] = Common::getProductPrice($key);
@@ -41,8 +42,14 @@ foreach ($tempPayInfos as $key => $value) {
         array_push($firstPayInfos, $info);
     }
 }
-// 根据产品价格升序排序
-$product_infos = Common::array_sort($firstPayInfos, 'productPrice', SORT_ASC);
+// 排序
+$idx = [];
+$productPrice = [];
+foreach ($firstPayInfos as $key => $row) {
+    $idx[$key] = $row['idx'];
+    $productPrice[$key] = $row['productPrice'];
+}
+array_multisort($idx, SORT_ASC, $productPrice, SORT_ASC, $firstPayInfos);
 
 // 计算产品销售排行
 $product_infos = [];
@@ -55,7 +62,11 @@ foreach ($purchase_records as $value) {
     $isAddedProduct = (array_search($value['productName'], array_column($product_infos, 'productName')) === false);
     $addedPay = Common::getProductPrice($value['productName']) * $value['purchaseNum'];
     if ($isAddedProduct) {
-        $product_info = ['productName' => $value['productName'], 'purchaseNum' => $value['purchaseNum'], 'payAmount' => $addedPay];
+        $product_info = [];
+        $product_info['productName'] = $value['productName'];
+        $product_info['productPrice'] = Common::getProductPrice($value['productName']);
+        $product_info['purchaseNum'] = $value['purchaseNum'];
+        $product_info['payAmount'] = $addedPay;
         $product_infos[$value['productName']] = $product_info;
     } else {
         $tmp_info = &$product_infos[$value['productName']];
