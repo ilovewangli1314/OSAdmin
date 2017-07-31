@@ -25,7 +25,7 @@ class Medoo{
 			$this->pdo->exec('SET NAMES \'' . $this->charset . '\'');
 		}
 		catch (PDOException $e) {
-//			echo $e->getMessage();
+			echo $e->getMessage();
 		}
 	}
 	

@@ -17,7 +17,7 @@ define('TEMPLATE_CACHE', ADMIN_BASE . '/cache/');
 // OSAdmin 常量
 //define('ADMIN_URL' ,'http://demo.osadmin.net/uploads');
 //define('ADMIN_URL' ,'http://localhost/OSAdmin/uploads');
-define('ADMIN_URL' ,'http://35.160.169.84/OSAdmin-SlotsPirates/uploads');
+define('ADMIN_URL' ,'http://35.160.169.84/OSAdmin/uploads');
 define('ADMIN_TITLE' ,'管理后台');
 define('COMPANY_NAME' ,'OSAdmin.org');
 
@@ -47,7 +47,7 @@ $DATABASE_LIST[GAME_DB_ID] = array (
     'port' => '27017',
     'username' => 'jianggang',
     'password' => 'jg!a123.',
-    'db_name' => 'slots_pirates');
+    'db_name' => 'clash_of_gods');
 
 // COOKIE 加密密钥，建议修改
 define('OSA_ENCRYPT_KEY','whatafuckingday!');
