@@ -6,7 +6,7 @@
 <{$osadmin_action_alert}>
 <{$osadmin_quick_note}>
 <div class="well">
-	<div class="block-heading h3">
+	<div class="block-heading">
 		日期: <{$date_str}>
 	</div>
 
