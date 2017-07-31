@@ -6,9 +6,13 @@
 <{$osadmin_action_alert}>
 <{$osadmin_quick_note}>
 <div class="well">
+	<div class="block-heading">
+		日期: <{$date_str}>
+	</div>
+
 	<div class="block">
-		<a href="#page-stats" class="block-heading" data-toggle="collapse">首次充值列表</a>
-		<div id="page-stats" class="block-body collapse out">
+		<a href="#page-stats-firstpay" class="block-heading" data-toggle="collapse">首次充值列表</a>
+		<div id="page-stats-firstpay" class="block-body collapse out">
 			<table class="table table-striped">
 				<thead>
 				<tr>
@@ -33,8 +37,8 @@
 	</div>
 
 	<div class="block">
-		<a href="#page-stats" class="block-heading" data-toggle="collapse">商品列表</a>
-		<div id="page-stats" class="block-body collapse in">
+		<a href="#page-stats-product" class="block-heading" data-toggle="collapse">商品列表</a>
+		<div id="page-stats-product" class="block-body collapse in">
 			<table class="table table-striped">
 				<thead>
 				<tr>
@@ -66,8 +70,8 @@
 	</div>
 
 	<div class="block">
-		<a href="#page-stats" class="block-heading" data-toggle="collapse">玩家列表</a>
-		<div id="page-stats" class="block-body collapse in">
+		<a href="#page-stats-user" class="block-heading" data-toggle="collapse">玩家列表</a>
+		<div id="page-stats-user" class="block-body collapse in">
 			<table class="table table-striped">
 				<thead>
 				<tr>

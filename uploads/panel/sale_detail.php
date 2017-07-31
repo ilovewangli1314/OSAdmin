@@ -113,6 +113,7 @@ foreach ($purchase_records as $value) {
 // 根据玩家购买总额降序排序
 $user_infos = Common::array_sort($user_infos, 'payAmount', SORT_DESC);
 
+Template::assign ('date_str', DateUtils::getDateStr($day_time, true)); // 日期字符串
 Template::assign ('first_pay_infos', $firstPayInfos);
 Template::assign ('product_infos', $product_infos);
 Template::assign ('user_infos', $user_infos);
