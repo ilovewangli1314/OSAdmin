@@ -27,7 +27,7 @@
 			    <label>最后登录时间</label>
 			    <input type="text" name="loginTime" value="<{$player.loginTimeStr}>" class="input-xlarge" readonly="true">
 			    <label>已开启老虎机</label>
-			    <input type="text" name="player_coins" value="<{$player.paySlotsStr}>" class="input-xlarge" required="true" >
+			    <input type="text" name="paySlotsStr" value="<{$player.paySlotsStr}>" class="input-xlarge" required="true" >
 			<div class="btn-toolbar">
 				<button type="submit" class="btn btn-primary"><strong>提交</strong></button>
 				<div class="btn-group"></div>
