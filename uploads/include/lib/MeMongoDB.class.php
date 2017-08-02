@@ -72,7 +72,8 @@ class MeMongoDB {
         $bulk = new MongoDB\Driver\BulkWrite;
         $bulk->update(
             $condition,
-            ['$set' => $data]
+            ['$set' => $data],
+            ['upsert' => true]
         );
 
         $writeConcern = new MongoDB\Driver\WriteConcern(MongoDB\Driver\WriteConcern::MAJORITY, 1000);
