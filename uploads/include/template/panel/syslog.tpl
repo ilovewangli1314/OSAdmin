@@ -66,6 +66,7 @@
         </div>
     </div>
 
+<script src="<{$smarty.const.ADMIN_URL}>/assets/js/datePickerExt.js"></script>
 <script>
 $(function() {
 	var date=$( "#start_date" );
