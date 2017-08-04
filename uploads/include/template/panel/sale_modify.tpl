@@ -22,14 +22,14 @@
 			    <input type="text" name="addedUsers" value="<{$dailyRecord.addedUsers}>" class="input-xlarge" required="true" >
 			    <label>付费用户数</label>
 			    <input type="text" name="payUsers" value="<{$dailyRecord.payUsers}>" class="input-xlarge" required="true" >
-			    <label>付费率</label>
-			    <input type="text" name="payRate" value="<{$dailyRecord.payRate}>" class="input-xlarge" required="true">
+			   <!--<label>付费率</label>
+			    <input type="text" name="payRate" value="<{$dailyRecord.payRate}>" class="input-xlarge" required="true"> -->
 			    <label>付费累计金额</label>
 			    <input type="text" name="payAmount" value="<{$dailyRecord.payAmount}>" class="input-xlarge" required="true" >
-			    <label>ARPU</label>
+			   <!--<label>ARPU</label>
 			    <input type="text" name="arpu" value="<{$dailyRecord.arpu}>" class="input-xlarge" required="true" >
 			    <label>ARPPU</label>
-			    <input type="text" name="arppu" value="<{$dailyRecord.arppu}>" class="input-xlarge" required="true" >
+			    <input type="text" name="arppu" value="<{$dailyRecord.arppu}>" class="input-xlarge" required="true" > -->
 			<div class="btn-toolbar">
 				<button type="submit" class="btn btn-primary"><strong>提交</strong></button>
 				<div class="btn-group"></div>
