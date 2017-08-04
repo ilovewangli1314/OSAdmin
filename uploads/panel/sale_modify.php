@@ -11,6 +11,12 @@ extract($_REQUEST, EXTR_IF_EXISTS);
 
 $dailyRecord = [];
 if (Common::isPost()) {
+    $payRate = number_format($payUsers / $activeUsers, 4) * 100;
+    $payRate = $payRate . '%';
+    $arpu = number_format($payAmount / $activeUsers, 2);
+    $arpu = $arpu . '$';
+    $arppu = number_format($payAmount / $payUsers, 2);
+    $arppu = $arppu . '$';
     $update_data = array ('activeUsers' => $activeUsers, 'addedUsers' => $addedUsers, 'payUsers' => $payUsers,
                           'payRate' => $payRate, 'payAmount' => $payAmount, 'arpu' => $arpu, 'arppu' => $arppu);
     $end_time = new DateTime($dayTime);
