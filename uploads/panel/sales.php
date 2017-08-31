@@ -47,7 +47,7 @@ if ($search) {
     $addedPayUsers = 0;
     $nextDayRetained = 0; // 次日留存
 //    $day7Retained = 0; // 7日留存
-    for ($i = $start + 1; $i < $end; $i++) {
+    for ($i = $start + 1; $i <= $end; $i++) {
         $timeRange = DateUtils::getTimeRange(DATE_UNIT_DAY, -$i);
         $begin_timestamp = $timeRange['minTime'];
         $end_timestamp = $timeRange['maxTime'];
