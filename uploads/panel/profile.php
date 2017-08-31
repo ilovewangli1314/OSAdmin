@@ -15,7 +15,7 @@ if (Common::isPost()) {
 				$user_data['password']=md5($new);
 				User::updateUser ( $current_user_id, $user_data );
 				SysLog::addLog ( UserSession::getUserName(), 'MODIFY', 'User' ,$current_user_id );
-				Common::exitWithSuccess (ErrorMessage::PWD_UPDATE_SUCCESS,'/sales.php');
+				Common::exitWithSuccess (ErrorMessage::PWD_UPDATE_SUCCESS,'/panel/sales.php');
 				
 			}
 		}else{
@@ -32,7 +32,7 @@ if (Common::isPost()) {
 		
 		UserSession::reload();
 		SysLog::addLog ( UserSession::getUserName(), 'MODIFY', 'User' ,$current_user_id, json_encode($user_data) );
-		Common::exitWithSuccess ('资料修改成功','/sales.php');
+		Common::exitWithSuccess ('资料修改成功','/panel/sales.php');
 		
 	}
 }

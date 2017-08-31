@@ -1,2 +1,2 @@
 <?php
-header("Location:panel/index.php");
+header("Location:panel/sales.php");
