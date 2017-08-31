@@ -35,8 +35,7 @@ if ($search) {
     $begin_timestamp = 0;
     $end_time = new DateTime();
     $end_time->setTime(0, 0, 0);
-//    $end_timestamp = $end_time->getTimestamp() + 24 * 60 * 60;
-    $end_timestamp = $end_time->getTimestamp();
+    $end_timestamp = $end_time->getTimestamp() + 24 * 60 * 60;
 
     $sale_infos = [];
     $sale_info = null;
@@ -47,7 +46,7 @@ if ($search) {
     $addedPayUsers = 0;
     $nextDayRetained = 0; // 次日留存
 //    $day7Retained = 0; // 7日留存
-    for ($i = $start; $i < $end; $i++) {
+    for ($i = $start + 1; $i < $end; $i++) {
         $timeRange = DateUtils::getTimeRange(DATE_UNIT_DAY, -$i);
         $begin_timestamp = $timeRange['minTime'];
         $end_timestamp = $timeRange['maxTime'];
