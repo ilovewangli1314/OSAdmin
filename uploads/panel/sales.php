@@ -35,7 +35,8 @@ if ($search) {
     $begin_timestamp = 0;
     $end_time = new DateTime();
     $end_time->setTime(0, 0, 0);
-    $end_timestamp = $end_time->getTimestamp() + 24 * 60 * 60;
+//    $end_timestamp = $end_time->getTimestamp() + 24 * 60 * 60;
+    $end_timestamp = $end_time->getTimestamp();
 
     $sale_infos = [];
     $sale_info = null;
@@ -59,7 +60,8 @@ if ($search) {
         $sale_info['date'] = DateUtils::getDateStr($begin_timestamp, true);
 
         // 如果是当天则实时查询玩家列表生成活跃用户和新增用户
-        if ($i == 0) {
+//        if ($i == 0) {
+        if (false) {
             $conditions = ['loginTime' => ['$gte' => $begin_timestamp * 1000, '$lt' => $end_timestamp * 1000]];
             $loginPlayers = Player::search($conditions);
             foreach ($loginPlayers as $value) {
@@ -117,7 +119,8 @@ if ($search) {
 //        $conditions = ['dayTime' => ['$gte' => $begin_timestamp * 1000, '$lt' => $end_timestamp * 1000]];
 //        $daily_record = DailyRecord::search($conditions)[0];
         $daily_record = [];
-        if ($i == 0) {
+//        if ($i == 0) {
+        if (false) {
             // 付费信息的时间
             $daily_record['dayTime'] = $sale_info['day_time'] = $begin_timestamp;
             // 活跃用户数
