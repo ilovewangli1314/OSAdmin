@@ -22,7 +22,8 @@ if ($search) {
     // 得到距离项目开始时的总天数
     $totalDays = DateUtils::dateDifference(null, STAT_BEGIN_TIME);
 
-    $row_count = $totalDays + 1;
+//    $row_count = $totalDays + 1;
+    $row_count = $totalDays;
     $total_page = $row_count % $page_size == 0 ? $row_count / $page_size : ceil($row_count / $page_size);
     $total_page = $total_page < 1 ? 1 : $total_page;
     $page_no = $page_no > ($total_page) ? ($total_page) : $page_no;
