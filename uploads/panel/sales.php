@@ -176,15 +176,16 @@ if ($search) {
             $sale_info['pay_users'] = $daily_record['payUsers'];
             // 新增付费用户数
             $sale_info['added_pay_users'] = $daily_record['addedPayUsers'];
+            $payAmountStr = str_replace(array(","), "", $daily_record['payAmount']);
             // ARPU
 //            $sale_info['arpu'] = $daily_record['arpu'];
-            $sale_info['arpu'] = number_format(Common::safeDivide($daily_record['payAmount'], $daily_record['activeUsers']), 2) . '$';
+            $sale_info['arpu'] = number_format(Common::safeDivide($payAmountStr, $daily_record['activeUsers']), 2) . '$';
             // ARPPU
 //            $sale_info['arppu'] = $daily_record['arppu'];
-            $sale_info['arppu'] = number_format(Common::safeDivide($daily_record['payAmount'], $daily_record['payUsers']), 2) . '$';
+            $sale_info['arppu'] = number_format(Common::safeDivide($payAmountStr, $daily_record['payUsers']), 2) . '$';
             // 付费率
 //            $sale_info['pay_rate'] = $daily_record['payRate'];
-            $sale_info['pay_rate'] = number_format(Common::safeDivide($daily_record['payUsers'], $daily_record['activeUsers']), 4) * 100 . "%";
+            $sale_info['pay_rate'] = number_format(Common::safeDivide($payAmountStr, $daily_record['activeUsers']), 4) * 100 . "%";
             // 新增用户付费率
             $sale_info['added_pay_rate'] = $daily_record['addedPayRate'];
         }
