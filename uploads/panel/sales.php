@@ -170,13 +170,13 @@ if ($search) {
             $sale_info['day_time'] = $daily_record['dayTime'];
             // 付费次数
             $sale_info['pay_num'] = $daily_record['payNum'];
+            $payAmountStr = str_replace(array(","), "", $daily_record['payAmount']);
             // 付费累计金额
-            $sale_info['pay_amount'] = $daily_record['payAmount'] . "$";
+            $sale_info['pay_amount'] = $payAmountStr . "$";
             // 付费用户数
             $sale_info['pay_users'] = $daily_record['payUsers'];
             // 新增付费用户数
             $sale_info['added_pay_users'] = $daily_record['addedPayUsers'];
-            $payAmountStr = str_replace(array(","), "", $daily_record['payAmount']);
             // ARPU
 //            $sale_info['arpu'] = $daily_record['arpu'];
             $sale_info['arpu'] = number_format(Common::safeDivide($payAmountStr, $daily_record['activeUsers']), 2) . '$';
