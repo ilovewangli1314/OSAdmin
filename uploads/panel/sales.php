@@ -185,7 +185,7 @@ if ($search) {
             $sale_info['arppu'] = number_format(Common::safeDivide($payAmountStr, $daily_record['payUsers']), 2) . '$';
             // 付费率
 //            $sale_info['pay_rate'] = $daily_record['payRate'];
-            $sale_info['pay_rate'] = number_format(Common::safeDivide($payAmountStr, $daily_record['activeUsers']), 4) * 100 . "%";
+            $sale_info['pay_rate'] = number_format(Common::safeDivide($daily_record['payUsers'], $daily_record['activeUsers']), 4) * 100 . "%";
             // 新增用户付费率
             $sale_info['added_pay_rate'] = $daily_record['addedPayRate'];
         }
