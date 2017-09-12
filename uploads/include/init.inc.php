@@ -71,10 +71,10 @@ if( OSAdmin::checkNoNeedLogin($action_url,$no_need_login_page) ){
 		// 显示菜单、导航条、模板
 		$sidebar = SideBar::getTree ();
 
-		// 是否显示 quick note
-		if($current_user_info['show_quicknote']){
-			OSAdmin::showQuickNote();
-		}
+//		// 是否显示 quick note
+//		if($current_user_info['show_quicknote']){
+//			OSAdmin::showQuickNote();
+//		}
 
 		$menu = MenuUrl::getMenuByUrl(Common::getActionUrl());
 		Template::assign ( 'page_title', $menu['menu_name']);
