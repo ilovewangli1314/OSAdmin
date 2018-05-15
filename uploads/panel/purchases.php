@@ -36,7 +36,7 @@ if ($search) {
     $purchase_infos = Purchase::search(null, $start, $page_size);
 }
 
-$page_html = Pagination::showPager("players.php?player_id=$player_id&search=$search", $page_no, $page_size, $row_count);
+$page_html = Pagination::showPager("purchases.php?player_id=$player_id&search=$search", $page_no, $page_size, $row_count);
 
 //追加操作的确认层
 $confirm_html = OSAdmin::renderJsConfirm("icon-pause,icon-play,icon-remove");
