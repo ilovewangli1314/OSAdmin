@@ -46,4 +46,4 @@ Template::assign ( '_GET', $_GET );
 Template::assign ( 'page_no', $page_no );
 Template::assign ( 'page_html', $page_html );
 Template::assign ( 'osadmin_action_confirm' , $confirm_html);
-Template::display ( 'panel/players.tpl' );
+Template::display ( 'panel/purchases.tpl' );
