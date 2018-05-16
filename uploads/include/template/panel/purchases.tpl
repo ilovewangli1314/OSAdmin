@@ -13,8 +13,8 @@
 			<table class="table table-striped">
 				<thead>
 				<tr>
-					<th style="width:140px">玩家ID</th>
 					<th style="width:100px">充值ID</th>
+					<th style="width:140px">玩家ID</th>
 					<th style="width:100px">充值金额</th>
 					<th style="width:100px">充值时间</th>
 				</tr>
@@ -22,8 +22,8 @@
 				<tbody>
 				<{foreach name=purchase_info from=$purchase_infos item=purchase_info}>
 					<tr>
-						<td><{$purchase_info.playerID}></td>
 						<td><{$purchase_info.purchaseID}></td>
+						<td><{$purchase_info.playerID}></td>
 						<td><{$purchase_info.purchaseNum}></td>
 						<td><{$purchase_info.purchaseTime}></td>
 					</tr>
