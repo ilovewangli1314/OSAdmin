@@ -18,8 +18,8 @@
 				<input type="text" id="dayTime" name="dayTime" value="<{$dailyRecord.dayTime}>" class="input-xlarge" required="true">
 			    <label>活跃用户数</label>
 			    <input type="text" name="activeUsers" value="<{$dailyRecord.activeUsers}>" class="input-xlarge" required="true" >
-				<label>新增用户数</label>
-			    <input type="text" name="addedUsers" value="<{$dailyRecord.addedUsers}>" class="input-xlarge" required="true" >
+			    <!-- <label>新增用户数</label>
+			    <input type="text" name="addedUsers" value="<{$dailyRecord.addedUsers}>" class="input-xlarge" required="true" > -->
 			    <label>付费用户数</label>
 			    <input type="text" name="payUsers" value="<{$dailyRecord.payUsers}>" class="input-xlarge" required="true" >
 			   <!--<label>付费率</label>
